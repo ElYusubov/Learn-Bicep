@@ -1,0 +1,16 @@
+# Login to Azure
+az login --use-device-code
+az account show --query name
+
+# List all RG names
+az group list -o table
+
+# Deployment into SUBSCRIPTION
+az deployment sub what-if --location eastus2 --template-file .\main-deploy.bicep
+
+# Check before deployment
+az deployment sub create --location eastus2 --template-file .\main-deploy.bicep -c
+
+# List all RG names
+
+#
