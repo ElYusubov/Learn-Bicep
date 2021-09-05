@@ -8,6 +8,9 @@ az group list -o table
 # Deployment into SUBSCRIPTION
 az deployment sub what-if --location eastus2 --template-file .\1-deploy.bicep
 
+# Build JSON output with a different file name
+az bicep build --file .\1-deploy.bicep --outfile azure-storage-deploy.json
+
 # Check before deployment
 az deployment sub create --location eastus2 --template-file .\1-deploy.bicep -c
 

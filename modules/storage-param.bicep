@@ -1,5 +1,6 @@
 // storage.bicep
 
+@description('The prefix that will appear infront of storage account name.')
 @allowed([
   'school21'
   'test21'
@@ -7,11 +8,13 @@
 ])
 param namePrefix string = 'school21'
 
+@description('The storage account name.')
 @minLength(3)
 @maxLength(24)
 param paramStorageName string = '${namePrefix}${uniqueString(resourceGroup().id)}'
 var stgName = toLower(paramStorageName)
 
+@description('The flag that indicate need for a geo-redundant storage.')
 param geoRedundancy bool
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {

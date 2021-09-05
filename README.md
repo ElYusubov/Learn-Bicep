@@ -15,3 +15,5 @@ To get running the samples do the following in Vs Code env:
 - Install Bicep runtime on you machine
 - Install Bicep extension
 - Install Azure CLI
+
+## Layout of the project

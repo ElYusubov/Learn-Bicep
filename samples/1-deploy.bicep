@@ -2,8 +2,10 @@
 
 targetScope = 'subscription'
 
-// parametrize inputs
+@description('The name of the Resource Group.')
 param resourceGroupName string = 'rg-BackToSchool'
+
+@description('The Azure region into which the resources should be deployed.')
 param azureRegion string = 'eastus2' 
 
 // add resource group
