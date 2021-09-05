@@ -50,4 +50,7 @@ az deployment sub create --location eastus --template-file .\5-deploy.bicep -c
 
 az group delete --resource-group 'rg-BackToSchool-5' -y
 
-az group delete --resource-group 'rg-BackToSchool-3' -y 
+az group delete --resource-group 'rg-BackToSchool-3' -y
+
+# VM Deployment of 6-deploy-vm.bicep => Should succeed
+az deployment sub create --location eastus --template-file .\6-deploy-vm.bicep -c

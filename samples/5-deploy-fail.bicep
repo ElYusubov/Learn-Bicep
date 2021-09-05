@@ -1,10 +1,10 @@
-// main.bicep
+// 5-deploy-fail.bicep
 
 targetScope = 'subscription'
 
 // parametrize inputs
 param resourceGroupName string = 'rg-BackToSchool-5'
-param azureRegion string = 'eastus2'  // 'westeurope' 
+param azureRegion string = 'westeurope' //'eastus2' 
 
 // add resource group
 resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {

@@ -1,4 +1,4 @@
-// main.bicep
+// 4-deploy-policy.bicep
 
 targetScope = 'subscription'
 

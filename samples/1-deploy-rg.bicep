@@ -1,4 +1,4 @@
-// main.bicep
+// 1-deploy-rg.bicep
 
 targetScope = 'subscription'
 
@@ -6,7 +6,7 @@ targetScope = 'subscription'
 param resourceGroupName string = 'rg-BackToSchool'
 
 @description('The Azure region into which the resources should be deployed.')
-param azureRegion string = 'eastus2' 
+param azureRegion string = 'eastus2'
 
 // add resource group
 resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
@@ -17,4 +17,3 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
     'Environment': 'Dev'   
   }
 }
-
