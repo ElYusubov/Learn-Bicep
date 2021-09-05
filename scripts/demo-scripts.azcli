@@ -6,10 +6,10 @@ az account show --query name
 az group list -o table
 
 # Deployment into SUBSCRIPTION
-az deployment sub what-if --location eastus2 --template-file .\main-deploy.bicep
+az deployment sub what-if --location eastus2 --template-file .\1-deploy.bicep
 
 # Check before deployment
-az deployment sub create --location eastus2 --template-file .\main-deploy.bicep -c
+az deployment sub create --location eastus2 --template-file .\1-deploy.bicep -c
 
 # List all RG names
 
@@ -20,4 +20,30 @@ az storage account list --query [].name -o table
 # Remove deployed storage account
 az storage account delete --name 'stgbacktoschool942021' --resource-group 'rg-BackToSchool'
 
-#
+# Redeploy RG with parametrized storage
+az deployment sub create --location eastus2 --template-file .\2-deploy.bicep -c
+
+# List all RG names & storage accounts
+az group list -o table
+az storage account list --query [].name -o table
+
+# Delete last deployment RG
+az group delete --resource-group 'rg-BackToSchool-2' -y
+
+# Deploy RG with parametrized storage that has a Lock
+az deployment sub create --location eastus2 --template-file .\3-deploy.bicep -c
+
+# Try to delete 'rg-BackToSchool-3' - it should FAIL due to lock
+az group delete --resource-group 'rg-BackToSchool-3' -y
+
+# Deploy Allowed locations Policy
+az deployment sub create --location eastus2 --template-file .\4-deploy.bicep -c
+
+# Deploy RG with parametrized storage to 'westeurope' - should fail when Policy in effect
+az deployment sub create --location westeurope --template-file .\5-deploy.bicep -c
+
+# Change the location to 'eastus' & re-try the deployment of 5-deploy.bicep => Should succeed
+az deployment sub create --location eastus --template-file .\5-deploy.bicep -c
+
+az group delete --resource-group 'rg-BackToSchool-5' -y
+ 

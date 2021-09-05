@@ -1,6 +1,6 @@
 // storage.bicep
 
-// let's use snippets
+// use snippets
 
 resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: 'stgbacktoschool942021'
