@@ -13,4 +13,11 @@ az deployment sub create --location eastus2 --template-file .\main-deploy.bicep 
 
 # List all RG names
 
+# Actual deployment to Resource-Group
+az deployment group create -g 'rg-BackToSchool' -f .\modules\storage.bicep -c
+az storage account list --query [].name -o table
+
+# Remove deployed storage account
+az storage account delete --name 'stgbacktoschool942021' --resource-group 'rg-BackToSchool'
+
 #
