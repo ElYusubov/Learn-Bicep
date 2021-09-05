@@ -46,4 +46,5 @@ az deployment sub create --location westeurope --template-file .\5-deploy.bicep 
 az deployment sub create --location eastus --template-file .\5-deploy.bicep -c
 
 az group delete --resource-group 'rg-BackToSchool-5' -y
- 
+
+az group delete --resource-group 'rg-BackToSchool-3' -y 
