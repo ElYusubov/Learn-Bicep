@@ -7,8 +7,6 @@ Next goal is to author Security as Code (SaC) via Azure security resources.
 ## Badges
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
-[![CI]()]
-[![Build and Deploy Bicep]()]
 
 To get running the samples do the following in Vs Code env:
 - Fork the branch (aka, starting from obvious ;)
@@ -16,4 +14,4 @@ To get running the samples do the following in Vs Code env:
 - Install Bicep extension
 - Install Azure CLI
 
-## Layout of the project
+## Project Layout
