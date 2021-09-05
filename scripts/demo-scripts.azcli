@@ -54,3 +54,7 @@ az group delete --resource-group 'rg-BackToSchool-3' -y
 
 # VM Deployment of 6-deploy-vm.bicep => Should succeed
 az deployment sub create --location eastus --template-file .\6-deploy-vm.bicep -c
+
+# Deploy with 
+az group create -l eastus -g 'rg-BackToSchool-8' 
+az deployment group create -g 'rg-BackToSchool-8' -f .\firewall-w-ip-prefix.bicep -p .\firewall-w-ip-prefix.parameters.dev.json -c
