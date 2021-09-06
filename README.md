@@ -15,3 +15,7 @@ To get running the samples do the following in Vs Code env:
 - Install Azure CLI
 
 ## Project Layout
+- modules: contain reusable components
+- param-files: has firewall with IP prefix bicep code with parameters file
+- samples: contain 6 step deployments of basic Azure security services
+- scripts: contain single azcli file that walk you through deployment scripts
