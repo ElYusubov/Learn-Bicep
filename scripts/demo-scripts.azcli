@@ -6,13 +6,13 @@ az account show --query name
 az group list -o table
 
 # Deployment into SUBSCRIPTION
-az deployment sub what-if --location eastus2 --template-file .\1-deploy.bicep
+az deployment sub what-if --location eastus2 --template-file .\1-deploy-rg.bicep
 
 # Build JSON output with a different file name
-az bicep build --file .\1-deploy.bicep --outfile azure-storage-deploy.json
+az bicep build --file .\1-deploy-rg.bicep --outfile azure-storage-deploy.json
 
 # Check before deployment
-az deployment sub create --location eastus2 --template-file .\1-deploy.bicep -c
+az deployment sub create --location eastus2 --template-file .\1-deploy-rg.bicep -c
 
 # List all RG names
 
@@ -24,7 +24,7 @@ az storage account list --query [].name -o table
 az storage account delete --name 'stgbacktoschool942021' --resource-group 'rg-BackToSchool'
 
 # Redeploy RG with parametrized storage
-az deployment sub create --location eastus2 --template-file .\2-deploy.bicep -c
+az deployment sub create --location eastus2 --template-file .\2-deploy-param-storage.bicep -c
 
 # List all RG names & storage accounts
 az group list -o table
@@ -34,19 +34,19 @@ az storage account list --query [].name -o table
 az group delete --resource-group 'rg-BackToSchool-2' -y
 
 # Deploy RG with parametrized storage that has a Lock
-az deployment sub create --location eastus2 --template-file .\3-deploy.bicep -c
+az deployment sub create --location eastus2 --template-file .\3-deploy-storage-w-Lock.bicep -c
 
 # Try to delete 'rg-BackToSchool-3' - it should FAIL due to lock
 az group delete --resource-group 'rg-BackToSchool-3' -y
 
 # Deploy Allowed locations Policy
-az deployment sub create --location eastus2 --template-file .\4-deploy.bicep -c
+az deployment sub create --location eastus2 --template-file .\4-deploy-policy.bicep -c
 
 # Deploy RG with parametrized storage to 'westeurope' - should fail when Policy in effect
-az deployment sub create --location westeurope --template-file .\5-deploy.bicep -c
+az deployment sub create --location westeurope --template-file .\5-deploy-fail.bicep -c
 
 # Change the location to 'eastus' & re-try the deployment of 5-deploy.bicep => Should succeed
-az deployment sub create --location eastus --template-file .\5-deploy.bicep -c
+az deployment sub create --location eastus --template-file .\5-deploy-fail.bicep -c
 
 az group delete --resource-group 'rg-BackToSchool-5' -y
 

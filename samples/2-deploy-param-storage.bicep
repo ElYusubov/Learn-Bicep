@@ -1,4 +1,4 @@
-// 2-deploy-param.storage.bicep
+// 2-deploy-param-storage.bicep
 
 targetScope = 'subscription'
 
