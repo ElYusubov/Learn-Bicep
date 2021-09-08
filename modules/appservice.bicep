@@ -2,8 +2,7 @@
 
 param location string = resourceGroup().location
 param appServiceAppName string = 'cllapp${uniqueString(resourceGroup().id)}'
-
-var appServicePlanName = 'cllapp-plan'
+param appServicePlanName string = 'cllapp-plan'
 
 resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   name: appServicePlanName
