@@ -5,6 +5,8 @@ targetScope = 'subscription'
 param listOfAllowedLocations array = [
   'eastus'
   'eastus2'
+  'westus'
+  'westus2'
 ]
 
 @allowed([
