@@ -1,11 +1,11 @@
-// 6-deploy-vm.bicep
+// 7-deploy-modules-w-param.bicep
 
 targetScope = 'subscription'
 
 // parametrize inputs
-param resourceGroupName string = 'rg-BackToSchool-6'
 param azureRegion string = 'eastus2' 
-param appResourceGroupName string = 'rg-test-app'
+param resourceGroupName string = 'rg-cll-vm-${azureRegion}'
+param appResourceGroupName string = 'rg-cll-app-${azureRegion}'
 param userName string = 'MyUser'
 @secure()
 param secretPass string
@@ -42,7 +42,7 @@ module winVMModule '../modules/vm-win.bicep' = {
   params: {
     adminUserName: userName
     adminPassword: secretPass
-    dnsLabelPrefix: 'backtoschool'
+    dnsLabelPrefix: 'cllsession'
     location: azureRegion
   }
 }
