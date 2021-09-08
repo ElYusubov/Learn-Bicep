@@ -58,3 +58,13 @@ az deployment sub create --location eastus --template-file .\6-deploy-vm.bicep -
 # Deploy with 
 az group create -l eastus -g 'rg-BackToSchool-8' 
 az deployment group create -g 'rg-BackToSchool-8' -f .\firewall-w-ip-prefix.bicep -p .\firewall-w-ip-prefix.parameters.dev.json -c
+
+# Decompile arm-json-samples
+az bicep decompile -f .\arm-json-samples\app-service.json
+
+# Create group and deploy a decompiled app-service.bicep
+az group create -n 'rg-web-app' -l 'eastus'
+az deployment group create -g 'rg-web-app' -f .\app-service.bicep -c
+
+# Delete the test resources on RG
+az group delete -n 'rg-web-app'
