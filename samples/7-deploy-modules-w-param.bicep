@@ -4,9 +4,9 @@ targetScope = 'subscription'
 
 // parametrize inputs
 param azureRegion string = 'eastus2' 
-param resourceGroupName string = 'rg-cll-vm-${azureRegion}'
-param appResourceGroupName string = 'rg-cll-app-${azureRegion}'
-param userName string = 'MyUser'
+param resourceGroupName string = 'rg-demo-vm-${azureRegion}'
+param appResourceGroupName string = 'rg-demo-app-${azureRegion}'
+param userName string
 @secure()
 param secretPass string
 
@@ -15,7 +15,7 @@ resource myAppResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: appResourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Azure CLL session 2021'
+    'Project': 'Azure Back to School 2021'
     'Environment': 'Demo'
   }
 }
@@ -42,7 +42,7 @@ module winVMModule '../modules/vm-win.bicep' = {
   params: {
     adminUserName: userName
     adminPassword: secretPass
-    dnsLabelPrefix: 'cllsession'
+    dnsLabelPrefix: 'demosession'
     location: azureRegion
   }
 }
