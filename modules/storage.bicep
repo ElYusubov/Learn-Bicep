@@ -1,7 +1,5 @@
 // storage.bicep
 
-// use snippets
-
 param storageName string = 'stgbacktoschool942021'
 param location string = resourceGroup().location
 
@@ -17,15 +15,13 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
 }
 
-resource nextStorage 'Microsoft.Storage/storageAccounts@2021-04-01' = {
-  name: 'cllsession9656'
-  location: 'westus'
+
+resource testStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
+  name: 'teststgschool0956'
+  location: resourceGroup().location
   kind: 'StorageV2'
   sku: {
     name: 'Standard_LRS'
-  }
-  tags: {
-    'project': 'cll demo'
   }
 }
 

@@ -1,4 +1,4 @@
-// firewall-w-ip-prefix.bicep
+// 8-deploy-firewall-w-ip-prefix.bicep
 
 @description('Specifies the Azure location where the key vault should be created.')
 param location string
