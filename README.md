@@ -1,8 +1,18 @@
-# Learn Bicep is a simple, yet powerful step-by-step learning guide with samples 
+# Learn Bicep 
 
-This project is created to check bicep file compilations into the ARM templates.
-Focus is on performing simple and complex IaC provisioning though authoring ARM templates via Bicep language.
-Next goal is to author Security as Code (SaC) via Azure security resources.
+The "Learn Bicep" is a simple, yet powerful step-by-step learning guide with easy to start samples. 
+
+This project is created to test Bicep language features, compilation, validations, etc.
+
+Learning by examples is a main focus and accomplished through writing simple and helpful Azure infrastructure code with Bicep language.
+
+
+The followings are initial goals of the project:
+
+    - Automate deployment via GitHub Actions
+    - Author Infrastructure as a Code (IaC)
+    - Author Security as Code (SaC)
+    - Showcase new features of Azure Bicep as they come
 
 ## Badges
 
