@@ -1,6 +1,8 @@
 # Learn Bicep 
 
-The "Learn Bicep" is a simple, yet powerful step-by-step learning guide with easy to start samples. 
+The "Learn Bicep" is a simple, yet powerful step-by-step learning guide with easy to start samples.
+
+## Introduction
 
 This project is created to test Bicep language features, compilation, validations, etc.
 
@@ -14,10 +16,16 @@ The followings are initial goals of the project:
     - Author Security as Code (SaC)
     - Showcase new features of Azure Bicep as they come
 
+- [Learn Bicep](#introduction)
+  - [Badges](#badges)
+  - [Run sample demos](#Run-sample-demos)
+  - [Project Layout](#Project-Layout)
+
 ## Badges
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
 
+## Run sample demos
 To get running the samples do the following in Vs Code env:
 - Fork the branch (aka, starting from obvious ;)
 - Install Bicep runtime on you machine
