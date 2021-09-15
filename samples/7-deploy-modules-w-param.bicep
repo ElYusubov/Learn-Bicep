@@ -3,10 +3,10 @@
 targetScope = 'subscription'
 
 // parametrize inputs
-param azureRegion string = 'eastus2' 
+param azureRegion string
 param resourceGroupName string = 'rg-demo-vm-${azureRegion}'
 param appResourceGroupName string = 'rg-demo-app-${azureRegion}'
-param storageResoureGroupName string = 'rg-demo-storage-${azureRegion}'
+param storageResourceGroupName string = 'rg-demo-storage-${azureRegion}'
 param userName string
 @secure()
 param secretPass string
@@ -50,7 +50,7 @@ module winVMModule '../modules/vm-win.bicep' = {
 
 // add resource group for a Storage
 resource storageResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-  name: storageResoureGroupName
+  name: storageResourceGroupName
   location: azureRegion
   tags:{
     'Project': 'Azure Back to School 2021'
