@@ -6,6 +6,7 @@ targetScope = 'subscription'
 param azureRegion string = 'eastus2' 
 param resourceGroupName string = 'rg-demo-vm-${azureRegion}'
 param appResourceGroupName string = 'rg-demo-app-${azureRegion}'
+param storageResoureGroupName string = 'rg-demo-storage-${azureRegion}'
 param userName string
 @secure()
 param secretPass string
@@ -44,5 +45,15 @@ module winVMModule '../modules/vm-win.bicep' = {
     adminPassword: secretPass
     dnsLabelPrefix: 'demosession'
     location: azureRegion
+  }
+}
+
+// add resource group for a Storage
+resource storageResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+  name: storageResoureGroupName
+  location: azureRegion
+  tags:{
+    'Project': 'Azure Back to School 2021'
+    'Environment': 'Demo'
   }
 }
