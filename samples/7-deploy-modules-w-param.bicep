@@ -65,3 +65,8 @@ module storageModule '../modules/storage-param.bicep' = {
     geoRedundancy: false
   }
 }
+
+module cosmosDBModule '../modules/cosmosdb.bicep' = {
+  scope: resourceGroup(storageResourceGroup.name)
+  name: 'cosmosDBDeployment-${uniqueString(storageResourceGroup.id)}'
+}
