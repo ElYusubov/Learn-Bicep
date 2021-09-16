@@ -1,9 +1,12 @@
-// storage-w-containers.bicep
+// storage-w-loop-containers.bicep
 
 param storageAccountName string = 'stor${uniqueString(resourceGroup().id)}'
-param containerName string = 'logs'
-// param inputContainerName string = 'inputs'
-// param outputContainerName string = 'outputs'
+
+var containerNames = [
+ 'logs'
+ 'inputs'
+ 'outputs'
+]
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: storageAccountName
@@ -17,6 +20,6 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
 }
 
-resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = {
+resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = [ for containerName in containerNames: {
   name: '${storageAccount.name}/default/${containerName}'
-}
+}]
