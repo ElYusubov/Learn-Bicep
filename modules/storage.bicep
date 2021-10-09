@@ -2,13 +2,16 @@
 
 param storageName string = 'stgbacktoschool942021'
 param location string = resourceGroup().location
+param environment string = 'dev'
+var storageAccountSkuName = (environment == 'prod') ? 'Standard_GRS' : 'Standard_LRS'
+var accountName = '${storageName}${environment}'
 
 resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: storageName
+  name: accountName
   location: location
   kind: 'StorageV2' 
   sku: {
-    name: 'Standard_LRS'
+    name: storageAccountSkuName
   }
   tags:{
     'ms-resource-usage': 'azure-cloud-shell'
