@@ -72,3 +72,6 @@ az group delete -n 'rg-web-app'
 
 # Module deployments of 7-deploy-modules-w-param.bicep iwth param file 7-deploy-modules-w-param.dev.json
 az deployment sub create --location eastus -f .\samples\7-deploy-modules-w-param.bicep -p .\param-files\7-deploy-modules-w-param.dev.json -c
+
+# Deploy storage with a container
+az deployment group create -g 'BicepTest-RG' -f .\modules\storage-w-containers.bicep -c

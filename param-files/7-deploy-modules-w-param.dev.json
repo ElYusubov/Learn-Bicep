@@ -3,19 +3,22 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "azureRegion": {
-        "value": "eastus2"
+        "value": "eastus"
       },
       "resourceGroupName": {
-        "value": "rg-cll-vm-1"
+        "value":  "rg-cll-vm-914"  
       },
       "appResourceGroupName": {
-        "value": "rg-cll-app-1"
+        "value": "rg-cll-app-914"
       },
       "userName": {
         "value": "PowerUser"
       },
+      "storageResourceGroupName": {
+        "value": "rg-cll-stg-914"
+      },
       "secretPass": {
-        "value": "MY%$3432passingday6"
+        "value": "MY%$9142PassExamDay6"
       }
     }
   }
