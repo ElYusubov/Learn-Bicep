@@ -4,4 +4,10 @@ az group list -o table
 # Create a rg-test-deply RG
 az group create -l eastus -g 'rg-test-deply'
 
-# Run 
+# Run deployment with default values in param
+az deployment group create -g 'rg-test-deply' -f .\param-files\webapp-service-default-param.bicep -c
+az webapp list --query [].name -o table
+
+
+# Remove resources
+az group delete -n 'rg-test-deply'
