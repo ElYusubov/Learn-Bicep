@@ -8,6 +8,8 @@ az group create -l eastus -g 'rg-test-deply'
 az deployment group create -g 'rg-test-deply' -f .\param-files\webapp-service-default-param.bicep -c
 az webapp list --query [].name -o table
 
+# Run deployment Case2 with inline params
+az deployment group create -g 'rg-test-deply' -f .\param-files\webapp-service-w-inline-param.bicep -p location='eastus'  
 
 # Remove resources
 az group delete -n 'rg-test-deply'

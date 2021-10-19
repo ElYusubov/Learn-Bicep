@@ -1,8 +1,8 @@
-// webapp-service-default-param.bicep
+// webapp-service-w-inline-param.bicep
 
-param location string = resourceGroup().location
-param appServiceAppName string = 'parademo${uniqueString(resourceGroup().id)}'
-param appServicePlanName string = 'paramdemo-plan'
+param location string
+param appServiceAppName string
+param appServicePlanName string
 
 resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   name: appServicePlanName
