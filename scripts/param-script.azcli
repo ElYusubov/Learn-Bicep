@@ -1,0 +1,7 @@
+# List all RG names
+az group list -o table
+
+# Create a rg-test-deply RG
+az group create -l eastus -g 'rg-test-deply'
+
+# Run 
