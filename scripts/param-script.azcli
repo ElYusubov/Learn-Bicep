@@ -2,14 +2,19 @@
 az group list -o table
 
 # Create a rg-test-deply RG
-az group create -l eastus -g 'rg-test-deply'
+az group create -l eastus -g 'rg-test-deploy'
 
 # Run deployment with default values in param
-az deployment group create -g 'rg-test-deply' -f .\param-files\webapp-service-default-param.bicep -c
+az deployment group create -g 'rg-test-deploy' -f .\param-files\webapp-service-default-param.bicep -c
 az webapp list --query [].name -o table
 
 # Run deployment Case2 with inline params
-az deployment group create -g 'rg-test-deply' -f .\param-files\webapp-service-w-inline-param.bicep -p location='eastus'  
+az deployment group create -g 'rg-test-deploy' -f .\param-files\webapp-service-w-inline-param.bicep -p location='eastus' appServiceAppName='param-demoapp18' appServicePlanName='asp-param-demo' -c 
+az webapp list --query [].name -o table
+
+# Run deployment Case3 with a separate param file
+az deployment group create -g 'rg-test-deploy' -f .\param-files\webapp-service-w-param.bicep -p .\param-files\webapp-service-parameters.json -c
+
 
 # Remove resources
-az group delete -n 'rg-test-deply'
+az group delete -n 'rg-test-deploy'
