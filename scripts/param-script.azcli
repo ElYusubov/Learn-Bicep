@@ -1,20 +1,26 @@
 # List all RG names
 az group list -o table
 
-# Create a rg-test-deply RG
+# Create a rg-test-deploy RG
 az group create -l eastus -g 'rg-test-deploy'
 
-# Run deployment with default values in param
-az deployment group create -g 'rg-test-deploy' -f .\param-files\webapp-service-default-param.bicep -c
+# Option-1: Run deployment file as is
+az deployment group create -g 'rg-test-deploy' -f .\param-files\webapp-service-w-param.bicep
+
+# List all webapps in the subscription
 az webapp list --query [].name -o table
 
-# Run deployment Case2 with inline params
+# Option-2: Run deployment with default values
+az deployment group create -g 'rg-test-deploy' -f .\param-files\webapp-service-default-param.bicep
+az webapp list --query [].name -o table
+
+# Option-3: Run deployment with inline parameters
 az deployment group create -g 'rg-test-deploy' -f .\param-files\webapp-service-w-param.bicep -p location='eastus' appServiceAppName='param-demoapp18' appServicePlanName='asp-param-demo' -c 
 az webapp list --query [].name -o table
 
-# Run deployment Case3 with a separate param file
-az deployment group create -g 'rg-test-deploy' -f .\param-files\webapp-service-w-param.bicep -p .\param-files\webapp-service-parameters.json -c
+# Option-4: Run deployment with a separate parameter file
+az deployment group create -g 'rg-test-deploy' -f .\param-files\webapp-service-w-param.bicep -p .\param-files\webapp-service-parameters-dev.json -c
 az webapp list --query [].name -o table
 
 # Remove resources
-az group delete -n 'rg-test-deploy'
+az group delete -n 'rg-test-deploy' --yes
