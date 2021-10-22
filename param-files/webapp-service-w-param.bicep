@@ -1,7 +1,14 @@
 // webapp-service-w-param.bicep
 
+@description('Azure region to deploy all resources')
 param location string
+
+@minLength(2)
+@description('App service name')
 param appServiceAppName string
+
+@minLength(2)
+@description('App service plan name')
 param appServicePlanName string
 
 resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
