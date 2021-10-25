@@ -1,7 +1,22 @@
-// webapp-service-w-param.bicep
+// webapp-service-w-param-harening.bicep
 
+@description('Azure region to deploy all resources')
+@allowed([
+  'eastus'
+  'eastus2'
+  'westus'
+  'westus2'
+])
 param location string
+
+@minLength(2)
+@maxLength(60)
+@description('App service name')
 param appServiceAppName string
+
+@minLength(1)
+@maxLength(40)
+@description('App service plan name')
 param appServicePlanName string
 
 resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
