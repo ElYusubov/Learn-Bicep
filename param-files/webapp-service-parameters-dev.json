@@ -3,13 +3,16 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "location": {
-        "value": "westeurope"
+        "value": "eastus2"
       },
       "appServiceAppName": {
         "value": "param-demo-w-file"
       },
       "appServicePlanName": {
         "value": "asp-param-demo-w-file"
+      },
+      "environmentName": {
+        "value": "prod"
       }
     }
   }

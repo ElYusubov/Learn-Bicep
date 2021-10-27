@@ -1,4 +1,4 @@
-// webapp-service-w-param-harening.bicep
+// webapp-service-w-param-hardening.bicep
 
 @description('Azure region to deploy all resources')
 @allowed([
@@ -19,14 +19,37 @@ param appServiceAppName string
 @description('App service plan name')
 param appServicePlanName string
 
-param environment string
+@allowed([
+  'dev'
+  'test'
+  'prod'
+])
+param environmentName string
+
+var environmentSettings = {
+  dev: {
+    instanceName: 'F1'
+    instanceTier: 'Free'
+  }
+  test: {
+    instanceName: 'D1'
+    instanceTier: 'Shared'
+  }
+  prod: {
+    instanceName: 'B3'
+    instanceTier: 'Basic'
+  }
+}
+
+var instanceName = environmentSettings[environmentName].instanceName
+var instanceTier = environmentSettings[environmentName].instanceTier
 
 resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   name: appServicePlanName
   location: location
   sku: {
-    name: 'F1'
-    tier: 'Free'
+    name: instanceName
+    tier: instanceTier
   }
 }
 
