@@ -19,6 +19,8 @@ param appServiceAppName string
 @description('App service plan name')
 param appServicePlanName string
 
+param environment string
+
 resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   name: appServicePlanName
   location: location
