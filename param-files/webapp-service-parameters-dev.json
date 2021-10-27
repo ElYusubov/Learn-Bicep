@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "location": {
-        "value": "eastus2"
+        "value": "westeurope"
       },
       "appServiceAppName": {
         "value": "param-demo-w-file"
