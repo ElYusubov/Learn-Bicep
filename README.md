@@ -26,15 +26,15 @@ The followings are initial goals of the project:
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
 [![SL Scan](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/shiftleft-analysis.yml/badge.svg)](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/shiftleft-analysis.yml)
 
-## Run sample demos
+## How to run sample demos
 To get running the samples do the following in Vs Code env:
 - Fork the branch (aka, starting from obvious ;)
-- Install Bicep runtime on you machine
-- Install Bicep extension
-- Install Azure CLI
+- Install Azure CLI or PowerShell Core on you machine
+- Enable the Bicep runtime on you machine
+- Install VS Code Bicep extension
 
 ## Project Layout
 - modules: contain reusable components
 - param-files: has firewall with IP prefix bicep code with parameters file
 - samples: contain 6 step deployments of basic Azure security services
-- scripts: contain single azcli file that walk you through deployment scripts
+- scripts: contain single '.azcli' file that walk you through deployment scripts
