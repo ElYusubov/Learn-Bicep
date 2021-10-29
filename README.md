@@ -35,6 +35,6 @@ To get running the samples do the following in Vs Code env:
 
 ## Project Layout
 - modules: contain reusable components
-- param-files: has Bicep code sample with parameterization options
+- param-files: Learn about parameterization options in Azure Bicep files
 - samples: contain 10 step deployments of Azure basic and security services
 - scripts: contain single '.azcli' file that walk you through deployment scripts
