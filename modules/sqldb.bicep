@@ -1,8 +1,12 @@
 // sqldb.bicep
 
+param adminLogin string = 'contosoadmin'
+
+param sqlServerName string = 'ContosoSqlServer114'
+
 @minLength(12)
 @secure()
-param myPassword string
+param adminPassword string
 
 @description('Azure region to deploy all resources')
 @allowed([
@@ -14,11 +18,11 @@ param myPassword string
 param location string
 
 resource sqlserver 'Microsoft.Sql/servers@2021-02-01-preview' = {
-  name: 'ContosoSqlServer'
+  name: sqlServerName
   location: location
   properties: {
-    administratorLogin: 'contosoadmin'
-    administratorLoginPassword: myPassword
+    administratorLogin: adminLogin
+    administratorLoginPassword: adminPassword
   }
 
   resource sqldb 'databases' = {
