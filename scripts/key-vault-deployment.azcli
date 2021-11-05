@@ -8,3 +8,6 @@ az keyvault secret set --vault-name mykeyvault114 --name "ExamplePassword" --val
 
 # Deploy from template
 az deployment group create -g 'rg-keyvault-deploy' -f .\modules\azure-keyvault.bicep
+
+# Deploy
+az deployment group create -g 'rg-keyvault-deploy' -f .\samples\11-deploy-sqldb-w-keyvault.bicep
