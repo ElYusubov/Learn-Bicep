@@ -1,0 +1,5 @@
+# Create a rg-keyvault-deploy RG
+az group create -l eastus2 -g 'rg-keyvault-deploy'
+
+az keyvault create --name mykeyvault114 --resource-group 'rg-keyvault-deploy' --location eastus2 --enabled-for-template-deployment true
+az keyvault secret set --vault-name mykeyvault114 --name "ExamplePassword" --value "HackMehVFkk965BuUv"
