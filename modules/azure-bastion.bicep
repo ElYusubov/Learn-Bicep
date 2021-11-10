@@ -1,10 +1,25 @@
 // azure-bastion.bicep
 
+@description('Azure VNet name')
 param virtualNetworkName string = 'vnet01'
+
+@description('Azure VNet IP Prefix CIDR')
 param vNetIpPrefix string = '10.1.0.0/16'
+
+@description('Azure Bastion Subnet IP Prefix')
 param bastionSubnetIpPrefix string = '10.1.1.0/27'
+
+@description('Azure Bastion host name')
 param bastionHostName string
-param location string = resourceGroup().location
+
+@description('Azure region to deploy all resources')
+@allowed([
+  'eastus'
+  'eastus2'
+  'westus'
+  'westus2'
+])
+param location string
 
 resource publicIp 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
   name: '${bastionHostName}-pip'
