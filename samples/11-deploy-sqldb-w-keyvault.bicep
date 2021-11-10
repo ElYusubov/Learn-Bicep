@@ -1,3 +1,4 @@
+// 11-deploy-sqldb-w-keyvault.bicep
 
 param sqlServerName string
 param adminLogin string
@@ -5,6 +6,8 @@ param adminLogin string
 param subscriptionId string
 param kvResourceGroup string
 param kvName string
+
+param deleteUnusedParam string
 
 resource kv 'Microsoft.KeyVault/vaults@2019-09-01' existing = {
   name: kvName
