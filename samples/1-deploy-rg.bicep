@@ -8,7 +8,9 @@ param resourceGroupName string = 'rg-BackToSchool'
 @description('The Azure region into which the resources should be deployed.')
 param azureRegion string = 'eastus2'
 
-// add resource group
+// Failing build as bicepconfig errors out any un-used param declaration
+param deleteUnusedParam string
+
 resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion   // is this a good practice
