@@ -25,6 +25,7 @@ The followings are initial goals of the project:
 - [Learn Bicep](#introduction)
   - [Badges](#badges)
   - [Run sample demos](#Run-sample-demos)
+  - [Workflows](#Workflows)
   - [Project Layout](#Project-Layout)
 
 ## How to run sample demos
@@ -33,6 +34,10 @@ Get running your samples in the VS Code:
 - Install Azure CLI or PowerShell Core on you machine
 - Enable the Bicep runtime on you machine: try 'az bicep version' or 'bicep version'
 - Install VS Code Bicep extension
+
+## Workflows
+- SL Scan: shiftleft-analysis:-> describes workflow purpose
+- Deploy-Main-Site: main.deployment:-> describes workflow purpose
 
 ## Project Layout
 - modules: contain reusable components
