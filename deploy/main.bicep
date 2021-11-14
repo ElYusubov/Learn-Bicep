@@ -14,6 +14,7 @@ param location string = resourceGroup().location
 param environmentType string
 
 @description('A unique suffix for resource names that requires a global uniqueness.')
+@minLength(3)
 @maxLength(13)
 param resourceNameSuffix string = uniqueString(resourceGroup().id)
 
