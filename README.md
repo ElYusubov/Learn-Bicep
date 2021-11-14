@@ -2,6 +2,12 @@
 
 The "Learn Bicep" is a simple, yet powerful step-by-step learning guide with easy to start samples.
 
+## Badges
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
+[![SL Scan](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/shiftleft-analysis.yml/badge.svg)](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/shiftleft-analysis.yml)
+[![Main-site-deployment](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/main.deployment.yaml/badge.svg)](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/main.deployment.yaml)
+
 ## Introduction
 
 This project is created to test Bicep language features, compilation, validations, etc.
@@ -20,12 +26,6 @@ The followings are initial goals of the project:
   - [Badges](#badges)
   - [Run sample demos](#Run-sample-demos)
   - [Project Layout](#Project-Layout)
-
-## Badges
-
-[![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
-[![SL Scan](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/shiftleft-analysis.yml/badge.svg)](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/shiftleft-analysis.yml)
-[![Main-deploy-status](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/main.deployment.yaml/badge.svg)](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/main.deployment.yaml)
 
 ## How to run sample demos
 Get running your samples in the VS Code:

@@ -1,6 +1,6 @@
 // main.bicep
 // Deployment from main branch
-// Add registration Microsoft.Web & Microsoft.Insights
+// Add registration Microsoft.Web, Insights & AlertsManagment
 
 @description('The location into which your Azure resources should be deployed.')
 param location string = resourceGroup().location
