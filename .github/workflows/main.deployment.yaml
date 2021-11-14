@@ -18,7 +18,7 @@ jobs:
     - uses: azure/login@v1
       name: Sign in to Azure
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets.AZURE_CREDENTIALS_CM_SPONSOR }}
     - uses: azure/arm-deploy@v1
       name: Deploy website
       with:
