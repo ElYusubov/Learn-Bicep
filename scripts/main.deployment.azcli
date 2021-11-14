@@ -7,3 +7,8 @@ az group list -o table
 
 # Create main.bicep deployment RG
 az group create -l eastus2 -g 'PlayWebsite'
+
+# Create service principal and grant it Contributor access to RG
+az ad sp create-for-rbac --name PlayWebsiteApp --role Contributor --scopes /subscriptions/{your-subId}/resourceGroups/PlayWebsite
+
+#
