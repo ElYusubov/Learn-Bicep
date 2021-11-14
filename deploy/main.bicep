@@ -16,10 +16,10 @@ param environmentType string
 param resourceNameSuffix string = uniqueString(resourceGroup().id)
 
 // Define the names for resources.
-var appServiceAppName = 'toy-website-${resourceNameSuffix}'
-var appServicePlanName = 'toy-website'
-var applicationInsightsName = 'toywebsite'
-var storageAccountName = 'mystorageresourceNameSuffix'
+var appServiceAppName = 'playwebsite-${resourceNameSuffix}'
+var appServicePlanName = 'play-website'
+var applicationInsightsName = 'playwebsite'
+var storageAccountName = 'pystg${resourceNameSuffix}'
 
 // Define the SKUs for each component based on the environment type.
 var environmentConfigurationMap = {
