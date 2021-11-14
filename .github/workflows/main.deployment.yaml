@@ -1,0 +1,28 @@
+name: deploy-play-website-test
+concurrency: play-company
+
+on: 
+  push:
+    branches: 
+      - main
+
+env:
+  AZURE_RESOURCEGROUP_NAME: PlayWebsite
+  ENVIRONMENT_TYPE: Test
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: azure/login@v1
+      name: Sign in to Azure
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: azure/arm-deploy@v1
+      name: Deploy website
+      with:
+        deploymentName: ${{ github.run_number }}
+        resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
+        template: ./deploy/main.bicep
+        parameters: environmentType=${{ env.ENVIRONMENT_TYPE }}
