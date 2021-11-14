@@ -1,4 +1,4 @@
-name: deploy-play-website-test
+name: deploy-main-site
 concurrency: play-company
 
 on: 
