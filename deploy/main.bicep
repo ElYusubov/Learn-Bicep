@@ -2,17 +2,18 @@
 // Deployment from main branch
 // Add registration Microsoft.Web, Insights & AlertsManagment
 
-@description('The location into which your Azure resources should be deployed.')
+@description('The Azure region (location) for deployment.')
 param location string = resourceGroup().location
 
-@description('Select the type of environment you want to provision. Allowed values are Production and Test.')
+@description('The allowed environment types are: Dev, Test, and Prod.')
 @allowed([
-  'Production'
+  'Dev'
   'Test'
+  'Prod'
 ])
 param environmentType string
 
-@description('A unique suffix to add to resource names that need to be globally unique.')
+@description('A unique suffix for resource names that requires a global uniqueness.')
 @maxLength(13)
 param resourceNameSuffix string = uniqueString(resourceGroup().id)
 
@@ -23,7 +24,14 @@ var storageAccountName = 'pystg${resourceNameSuffix}'
 
 // Configurations based on SKUs and the environment type
 var environmentConfigurationMap = {
-  Production: {
+  Dev: {
+    appServicePlan: {
+      sku: {
+        name: 'F1'
+      }
+    }
+  }
+  Prod: {
     appServicePlan: {
       sku: {
         name: 'S1'
