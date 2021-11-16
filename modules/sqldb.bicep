@@ -1,7 +1,8 @@
 // sqldb.bicep
-
+@description('Admin user login name.')
 param adminLogin string = 'contosoadmin'
 
+@description('SQL Server name.')
 param sqlServerName string = 'ContosoSqlServer114'
 
 @minLength(12)

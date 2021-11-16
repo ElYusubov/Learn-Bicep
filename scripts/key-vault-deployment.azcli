@@ -1,19 +1,13 @@
 # Create a rg-keyvault-deploy RG
 az group create -l eastus2 -g 'rg-keyvault-deploy'
 
-az keyvault create --name mykeyvault114 --resource-group 'rg-keyvault-deploy' --location eastus2 --enabled-for-template-deployment true
+az keyvault create --name mykeyvault110 --resource-group 'rg-keyvault-deploy' --location eastus2 --enabled-for-template-deployment true
 # Get "objectId": from deployment
 
-az keyvault secret set --vault-name mykeyvault114 --name "ExamplePassword" --value "HackMehVFkk965BuUv"
+az keyvault secret set --vault-name mykeyvault110 --name "ExamplePassword" --value "HackMehVFkk965BuUv"
 
 # Deploy from template
 az deployment group create -g 'rg-keyvault-deploy' -f .\modules\azure-keyvault.bicep
 
 # Deploy
 az deployment group create -g 'rg-keyvault-deploy' -f .\samples\11-deploy-sqldb-w-keyvault.bicep
-
-# Mgmt group is: eb9e4978-a5f1-4592-a1c5-40650420ce91
-az deployment mg create --management-group-id 'eb9e4978-a5f1-4592-a1c5-40650420ce91' --name 'policy-set-test' --template-file .\samples\12-deploy-managment-group-scope.bicep --location eastus2 -c
-
-
-az deployment mg create --name demoMGDeployment --location EastUS2 --management-group-id 'eb9e4978-a5f1-4592-a1c5-40650420ce91' --template-uri "https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/management-level-deployment/azuredeploy.json" -c
