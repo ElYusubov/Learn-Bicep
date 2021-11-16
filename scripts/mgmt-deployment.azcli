@@ -1,0 +1,4 @@
+# Mgmt group is: eb9e4978-a5f1-4592-a1c5-40650420ce91
+az deployment mg create --management-group-id 'eb9e4978-a5f1-4592-a1c5-40650420ce91' --name 'policy-set-test' --template-file .\samples\12-deploy-managment-group-scope.bicep --location eastus2 -c
+
+az deployment mg create --name demoMGDeployment --location EastUS2 --management-group-id 'eb9e4978-a5f1-4592-a1c5-40650420ce91' --template-uri "https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/management-level-deployment/azuredeploy.json" -c
