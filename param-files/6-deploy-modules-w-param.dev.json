@@ -3,22 +3,24 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "azureRegion": {
-        "value": "eastus"
+        "value": "westus2"
       },
       "resourceGroupName": {
-        "value":  "rg-cll-vm-914"  
+        "value":  "rg-demo-vm-1116"  
       },
       "appResourceGroupName": {
-        "value": "rg-cll-app-914"
+        "value": "rg-demo-app-1116"
       },
       "userName": {
         "value": "PowerUser"
       },
-      "storageResourceGroupName": {
-        "value": "rg-cll-stg-914"
-      },
       "secretPass": {
-        "value": "MY%$9142PassExamDay6"
+        "reference": {
+          "keyVault": {
+            "id": "/subscriptions/{your-subscriptionId}/resourceGroups/{rg-name}/providers/Microsoft.KeyVault/vaults/{keyvault-name}"
+          },
+          "secretName": "VMPassword"
+        }
       }
     }
   }

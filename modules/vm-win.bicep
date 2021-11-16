@@ -30,7 +30,7 @@ param windowsOSVersion string = '2016-Datacenter'
   'Standard_D2_v3'
 ])
 @description('Size of the virtual machine.')
-param vmSize string = 'Standard_B2s'
+param vmSize string = 'Standard_B2ms'
 
 @description('location for all resources')
 param location string = resourceGroup().location

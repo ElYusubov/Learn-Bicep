@@ -2,11 +2,12 @@
 
 targetScope = 'subscription'
 
-// parametrize inputs
-param resourceGroupName string = 'rg-BackToSchool-6'
-param azureRegion string = 'eastus2' 
-param appResourceGroupName string = 'rg-test-app'
-param userName string = 'MyUser'
+// parametrized inputs used in parameter file
+param resourceGroupName string
+param azureRegion string 
+param appResourceGroupName string
+param userName string
+
 @secure()
 param secretPass string
 
