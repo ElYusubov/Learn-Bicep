@@ -44,7 +44,7 @@ az deployment sub create --location eastus2 --template-file .\3-deploy-storage-w
 az group delete --resource-group 'rg-BackToSchool-3' -y
 
 # Deploy Allowed locations Policy
-az deployment sub create --location eastus2 --template-file .\4-deploy-policy.bicep -c
+az deployment sub create --location eastus2 --template-file .\samples\4-deploy-sub-policy.bicep -c
 
 # Deploy RG with parametrized storage to 'westeurope' - should fail when Policy in effect
 az deployment sub create --location westeurope --template-file .\5-deploy-fail.bicep -c
