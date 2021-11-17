@@ -2,11 +2,18 @@
 
 The "Learn Bicep" is a simple, yet powerful step-by-step learning guide with easy to start samples.
 
-## Badges
-
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
 [![SL Scan](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/shiftleft-analysis.yml/badge.svg)](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/shiftleft-analysis.yml)
 [![Main-site-deployment](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/main.deployment.yaml/badge.svg)](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/main.deployment.yaml)
+
+## Azure Bicep blog posts
+- [Managing Azure Bicep sensitive info with Azure key Vault](https://thecloudmarathoner.com/index.php/2021/11/16/managing-azure-bicep-sensitive-info-with-key-vault/)
+- [Hardening parameter inputs on Azure Bicep files](https://thecloudmarathoner.com/index.php/2021/10/22/hardening-parameter-inputs-on-azure-bicep-files/)
+- [Four parameterization options for your Azure Bicep deployments](https://thecloudmarathoner.com/index.php/2021/10/15/four-parameterization-options-for-your-azure-bicep-deployments/)
+- [August month updates from Azure Bicep](https://thecloudmarathoner.com/index.php/2021/09/03/august-month-updates-from-azure-bicep/)
+- [How to check and update Azure CLI version on your workstation?](https://thecloudmarathoner.com/index.php/2021/09/02/how-to-check-and-update-azure-cli-verison-on-your-workstation/)
+- [What is new in Azure Bicep v0.4?](https://thecloudmarathoner.com/index.php/2021/07/30/what-is-new-in-azure-bicep-v0-4/)
+- [Troubleshooting an error on Bicep module – on Azure CLI (2.22.0) for Windows 10](https://thecloudmarathoner.com/index.php/2021/04/19/error-on-bicep-module-on-azure-cli-2-22-0-for-windows-10/)
 
 ## Introduction
 
@@ -23,7 +30,7 @@ The followings are initial goals of the project:
     - Showcase new features of Azure Bicep as they come
 
 - [Learn Bicep](#introduction)
-  - [Badges](#badges)
+  - [Azure Bicep posts](#Azure-Bicep-posts)
   - [Run sample demos](#Run-sample-demos)
   - [Workflows](#Workflows)
   - [Project Layout](#Project-Layout)
