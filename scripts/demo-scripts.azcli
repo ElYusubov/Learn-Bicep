@@ -77,7 +77,7 @@ az deployment sub create --location eastus -f .\samples\7-deploy-modules-w-param
 az deployment group create -g 'BicepTest-RG' -f .\modules\storage-w-containers.bicep -c
 
 # Deploy the 6-deploy-vm.bicep with its parameter file (w reference to KeyVault secret)
-az deployment sub create -l eastus2 -f .\samples\6-deploy-vm.bicep -p .\param-files\6-deploy-modules-w-param.dev.json
+az deployment sub create -l westus2 -f .\samples\6-deploy-vm.bicep -p .\param-files\6-deploy-modules-w-param.dev.json
 
 # Helpful troubleshooting references
 # https://docs.microsoft.com/en-us/answers/questions/340510/arm-templates-storageaccountsfileservices-error-34.html
