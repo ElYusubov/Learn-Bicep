@@ -10,3 +10,16 @@ az group create -l eastus2 -g 'PlayWebsite'
 
 # Create service principal and grant it Contributor access to RG
 az ad sp create-for-rbac --name PlayWebsiteApp --role Contributor --scopes /subscriptions/{your-subId}/resourceGroups/PlayWebsite
+
+# Deploy ARM JSON bicepdemo-app-C.json
+az group create -l eastus2 -g 'OmahaAzureUG-eastus2'
+az deployment group create -g 'OmahaAzureUG-eastus2' --name 'deploy-bicepdemo-app-C-json' -f .\arm-json-samples\bicepdemo-app-C.json -c
+
+# Decompile into Bicep
+az bicep decompile -f .\arm-json-samples\bicepdemo-app-C.json
+
+# Build JSON output with a different file name
+az bicep build -f .\arm-json-samples\bicepdemo-app-C.bicep --outfile bicepdemoapp.json
+
+# Deploy newly convertd bicepdemo-app-C.bicep into the same RG 'OmahaAzureUG-eastus2'
+az deployment group create -g 'OmahaAzureUG-eastus2' --name 'deploy-bicepdemo-app-C-bicep' -f .\arm-json-samples\bicepdemo-app-C.bicep -c

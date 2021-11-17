@@ -4,7 +4,7 @@ param components_bicepdemo_app_name string = 'bicepdemo-app'
 param virtualNetworks_bicepnetwork_name string = 'bicepnetwork'
 param storageAccounts_samplestg1010_name string = 'samplestg1010'
 param registries_demoacr109_name string = 'demoacr109'
-param workspaces_DefaultWorkspace_id string = '/subscriptions/a59c288d-1c96-44cd-bb34-ce4cd6e6ff2a/resourcegroups/defaultresourcegroup-eus2/providers/microsoft.operationalinsights/workspaces/defaultworkspace-a59c288d-1c96-44cd-bb34-ce4cd6e6ff2a-eus2'
+param workspaces_DefaultWorkspace_95e5f10c_7b73_4208_8808_2a2bc82ea927_EUS2_externalid string = '/subscriptions/95e5f10c-7b73-4208-8808-2a2bc82ea927/resourceGroups/DefaultResourceGroup-EUS2/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-95e5f10c-7b73-4208-8808-2a2bc82ea927-EUS2'
 
 resource registries_demoacr109_name_resource 'Microsoft.ContainerRegistry/registries@2021-06-01-preview' = {
   name: registries_demoacr109_name
@@ -50,7 +50,7 @@ resource components_bicepdemo_app_name_resource 'microsoft.insights/components@2
     Flow_Type: 'Bluefield'
     Request_Source: 'rest'
     RetentionInDays: 90
-    WorkspaceResourceId: workspaces_DefaultWorkspace_id
+    WorkspaceResourceId: workspaces_DefaultWorkspace_95e5f10c_7b73_4208_8808_2a2bc82ea927_EUS2_externalid
     IngestionMode: 'LogAnalytics'
     publicNetworkAccessForIngestion: 'Enabled'
     publicNetworkAccessForQuery: 'Enabled'

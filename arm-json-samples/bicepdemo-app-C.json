@@ -26,8 +26,8 @@
             "defaultValue": "demoacr109",
             "type": "String"
         },
-        "workspaces_DefaultWorkspace_95e5f10c_7b73_4208_8808_2a2bc82ea927_EUS2_externalid": {
-            "defaultValue": "/subscriptions/95e5f10c-7b73-4208-8808-2a2bc82ea927/resourceGroups/DefaultResourceGroup-EUS2/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-95e5f10c-7b73-4208-8808-2a2bc82ea927-EUS2",
+        "workspaces_DefaultWorkspace_id": {
+            "defaultValue": "/subscriptions/a59c288d-1c96-44cd-bb34-ce4cd6e6ff2a/resourcegroups/defaultresourcegroup-eus2/providers/microsoft.operationalinsights/workspaces/defaultworkspace-a59c288d-1c96-44cd-bb34-ce4cd6e6ff2a-eus2",
             "type": "String"
         }
     },
@@ -81,7 +81,7 @@
                 "Flow_Type": "Bluefield",
                 "Request_Source": "rest",
                 "RetentionInDays": 90,
-                "WorkspaceResourceId": "[parameters('workspaces_DefaultWorkspace_95e5f10c_7b73_4208_8808_2a2bc82ea927_EUS2_externalid')]",
+                "WorkspaceResourceId": "[parameters('workspaces_DefaultWorkspace_id')]",
                 "IngestionMode": "LogAnalytics",
                 "publicNetworkAccessForIngestion": "Enabled",
                 "publicNetworkAccessForQuery": "Enabled"
