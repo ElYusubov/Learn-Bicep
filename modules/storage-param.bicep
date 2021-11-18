@@ -12,11 +12,12 @@ param namePrefix string = 'stage21'
 @minLength(3)
 @maxLength(24)
 param paramStorageName string = '${namePrefix}${uniqueString(resourceGroup().id)}'
+
+@description('Transformed storage name')
 var stgName = toLower(paramStorageName)
 
-@description('The flag that indicate need for a geo-redundant storage.')
+@description('The flag that set the geo-redundant storage.')
 param geoRedundancy bool
-
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: stgName

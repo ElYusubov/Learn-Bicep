@@ -1,6 +1,6 @@
 // storage-w-loop-containers.bicep
 
-param storageAccountName string = 'stor${uniqueString(resourceGroup().id)}'
+param storageAccountName string = 'stgoug${uniqueString(resourceGroup().id)}'
 
 var containerNames = [
  'logs'
@@ -20,6 +20,17 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
 }
 
+resource myStorageBlobServices 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' = {
+  name: 'default'
+  parent: storageAccount
+}
+
+resource myStorageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-06-01' = {
+  name: 'data-log'
+  parent: myStorageBlobServices
+}
+
+// let's automate
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = [ for containerName in containerNames: {
   name: '${storageAccount.name}/default/${containerName}'
 }]
