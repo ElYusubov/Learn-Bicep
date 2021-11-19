@@ -1,13 +1,15 @@
 # Create a rg-keyvault-deploy RG
 az group create -l eastus2 -g 'rg-keyvault-deploy'
 
+# Deploy Key Vault resource
 az keyvault create --name mykeyvault110 --resource-group 'rg-keyvault-deploy' --location eastus2 --enabled-for-template-deployment true
 # Get "objectId": from deployment
 
+# Create a new secret from terminal
 az keyvault secret set --vault-name mykeyvault110 --name "ExamplePassword" --value "HackMehVFkk965BuUv"
 
 # Deploy from template
 az deployment group create -g 'rg-keyvault-deploy' -f .\modules\azure-keyvault.bicep
 
-# Deploy
+# Deploy SQL server that uses KeyVault secret
 az deployment group create -g 'rg-keyvault-deploy' -f .\samples\11-deploy-sqldb-w-keyvault.bicep
