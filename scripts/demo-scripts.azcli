@@ -18,6 +18,8 @@ az deployment sub create --location eastus2 --template-file .\samples\1-deploy-r
 # Storage account deployment to Resource-Group with pre-flight check
 az group create -l eastus -g 'rg-cloudmarathoner'
 az deployment group create -g 'rg-cloudmarathoner' -f .\modules\storage.bicep -c
+
+# List all the storage accounts
 az storage account list --query [].name -o table
 
 # Deploy storage account from RG
