@@ -11,8 +11,6 @@ az group create -l eastus2 -g 'PlayWebsite'
 # Create service principal and grant it Contributor access to RG
 az ad sp create-for-rbac --name PlayWebsiteApp --role Contributor --scopes /subscriptions/{your-subId}/resourceGroups/PlayWebsite
 
-
-
 # Deploy storage with parent declarations
 az group create -l eastus2 -g 'OmahaAzureUG-storage-eastus2'
 az deployment group create -g 'OmahaAzureUG-storage-eastus2' -f .\modules\storage-w-loop-containers.bicep -c
