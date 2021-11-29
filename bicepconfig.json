@@ -21,6 +21,9 @@
           },
           "simplify-interpolation": {
             "level": "warning"
+          },
+          "adminusername-should-not-be-literal":{
+            "level": "warning"
           }
         }
       }

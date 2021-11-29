@@ -13,7 +13,9 @@ param resourceGroupName string = 'rg-BackToSchool-2'
   'westus'
   'westus2'
 ])
-param azureRegion string = 'eastus2' 
+param azureRegion string = 'eastus2'
+
+param environment string
 
 resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
