@@ -23,6 +23,8 @@ var appServicePlanName = 'play-website'
 var applicationInsightsName = 'playwebsite'
 var storageAccountName = 'pystg${resourceNameSuffix}'
 
+var testMe = 'new-entry'
+
 // Configurations based on SKUs and the environment type
 var environmentConfigurationMap = {
   Dev: {
