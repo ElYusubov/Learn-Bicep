@@ -11,7 +11,7 @@
             "level": "warning"
           },
           "no-unused-vars": {
-            "level": "error"
+            "level":"warning"
           },
           "prefer-interpolation": {
             "level": "warning"
