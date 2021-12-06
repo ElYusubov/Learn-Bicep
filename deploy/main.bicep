@@ -1,6 +1,5 @@
 // main.bicep
-// Deployment from main branch
-// Add registration Microsoft.Web, Insights & AlertsManagment
+// Requires registration of Microsoft.Web, Insights & AlertsManagment
 
 @description('The Azure region (location) for deployment.')
 param location string = resourceGroup().location
@@ -22,8 +21,6 @@ var appServiceAppName = 'playwebsite-${resourceNameSuffix}'
 var appServicePlanName = 'play-website'
 var applicationInsightsName = 'playwebsite'
 var storageAccountName = 'pystg${resourceNameSuffix}'
-
-var testMe = 'new-entry'
 
 // Configurations based on SKUs and the environment type
 var environmentConfigurationMap = {
