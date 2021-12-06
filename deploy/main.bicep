@@ -4,8 +4,6 @@
 @description('The Azure region (location) for deployment.')
 param location string = resourceGroup().location
 
-param unused string = 'empty param'
-
 @description('The allowed environment types are: Dev, Test, and Prod.')
 @allowed([
   'Dev'
