@@ -20,6 +20,8 @@ param resourceNameSuffix string = uniqueString(resourceGroup().id)
 var appServiceAppName = 'playwebsite-${resourceNameSuffix}'
 var appServicePlanName = 'play-website'
 var applicationInsightsName = 'playwebsite'
+
+@description('Storage account name.')
 var storageAccountName = 'pystg${resourceNameSuffix}'
 
 // Configurations based on SKUs and the environment type
