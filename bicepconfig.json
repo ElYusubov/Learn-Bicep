@@ -1,31 +1,31 @@
 {
-  "analyzers": {
-    "core": {
-      "enabled": true,
-      "verbose": true,
-      "rules": {
-        "no-hardcoded-env-urls": {
-          "level": "warning"
-        },
-        "no-unused-params": {
-          "level":"error"
-        },
-        "no-unused-vars": {
-          "level": "warning"
-        },
-        "prefer-interpolation": {
-          "level": "warning"
-        },
-        "secure-parameter-default": {
-          "level": "error"
-        },
-        "simplify-interpolation": {
-          "level": "warning"
-        },
-        "adminusername-should-not-be-literal": {
-          "level": "warning"
+    "analyzers": {
+      "core": {
+        "enabled": true,
+        "verbose": true,
+        "rules": {
+          "no-hardcoded-env-urls": {
+            "level": "warning"
+          },
+          "no-unused-params": {
+            "level":"warning"
+          },
+          "no-unused-vars": {
+            "level":"warning"
+          },
+          "prefer-interpolation": {
+            "level": "warning"
+          },
+          "secure-parameter-default": {
+            "level": "error"
+          },
+          "simplify-interpolation": {
+            "level": "warning"
+          },
+          "adminusername-should-not-be-literal":{
+            "level": "warning"
+          }
         }
       }
     }
   }
-}
