@@ -1,8 +1,8 @@
 // appservice.bicep
 
 param location string = resourceGroup().location
-param appServiceAppName string = 'cllapp${uniqueString(resourceGroup().id)}'
-param appServicePlanName string = 'cllapp-plan'
+param appServiceAppName string = 'bicepapp${uniqueString(resourceGroup().id)}'
+param appServicePlanName string = 'bicepapp-plan'
 
 resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   name: appServicePlanName
