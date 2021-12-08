@@ -9,6 +9,6 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
   tags: {
     'Environment': 'Demo'
-    'Project': 'Omaha Azure UG 2021'
+    'Project': 'Festive Tech Calendar 2021'
   }
 }

@@ -2,21 +2,23 @@
 
 targetScope = 'subscription'
 
-// parametrize inputs
-param azureRegion string
+@description('Azure region location.')
+param azureRegion string = 'eastus'
+
 param resourceGroupName string = 'rg-demo-vm-${azureRegion}'
 param appResourceGroupName string = 'rg-demo-app-${azureRegion}'
 param storageResourceGroupName string = 'rg-demo-storage-${azureRegion}'
 param userName string
+
 @secure()
 param secretPass string
 
-// add APP service resource group
+// add an APP service resource group
 resource myAppResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: appResourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Azure Back to School 2021'
+    'Project': 'Festive Tech Calendar 2021'
     'Environment': 'Demo'
   }
 }
@@ -32,7 +34,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Azure Back to School 2021'
+    'Project': 'Festive Tech Calendar 2021'
     'Environment': 'Demo'
   }
 }
@@ -53,7 +55,7 @@ resource storageResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = 
   name: storageResourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Azure Back to School 2021'
+    'Project': 'Festive Tech Calendar 2021'
     'Environment': 'Demo'
   }
 }
