@@ -1,13 +1,15 @@
 // 7-deploy-modules-w-param.bicep
+// Sample AZ CLI deployment script
+// az deployment sub create --location eastus -f .\samples\7-deploy-modules-w-param.bicep -p .\param-files\7-deploy-modules-w-param.dev.json -c
 
 targetScope = 'subscription'
 
 @description('Azure region location.')
 param azureRegion string = 'eastus'
 
-param resourceGroupName string = 'rg-demo-vm-${azureRegion}'
-param appResourceGroupName string = 'rg-demo-app-${azureRegion}'
-param storageResourceGroupName string = 'rg-demo-storage-${azureRegion}'
+param resourceGroupName string // = 'rg-demo-vm-${azureRegion}'
+param appResourceGroupName string // = 'rg-demo-app-${azureRegion}'
+param storageResourceGroupName string // = 'rg-demo-storage-${azureRegion}'
 param userName string
 
 @secure()

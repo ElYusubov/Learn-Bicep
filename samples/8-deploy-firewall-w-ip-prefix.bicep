@@ -1,4 +1,6 @@
 // 8-deploy-firewall-w-ip-prefix.bicep
+// Sample AZ CLI deployment script
+// az deployment group create -g 'rg-cloudmarathoner-test' -f .\samples\8-deploy-firewall-w-ip-prefix.bicep -p .\param-files\8-deploy-firewall-w-ip-prefix.parameters.dev.json  -c
 
 @description('Specifies the Azure location where the key vault should be created.')
 param location string
