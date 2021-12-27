@@ -26,7 +26,7 @@ jobs:
     - uses: azure/login@v1
       name: Sign in to Azure
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS_CM_SPONSOR }}
+        creds: ${{ secrets.MCT_SUB_JSON }}
     - uses: azure/arm-deploy@v1
       name: Run preflight validation
       with:
@@ -44,7 +44,7 @@ jobs:
     - uses: azure/login@v1
       name: Sign in to Azure
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS_CM_SPONSOR }}
+        creds: ${{ secrets.MCT_SUB_JSON }}
     - uses: azure/arm-deploy@v1
       name: Deploy website
       with:
