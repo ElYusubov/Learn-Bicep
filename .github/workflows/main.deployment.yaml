@@ -8,7 +8,7 @@ on:
       - 'release/**'
 
 env:
-  AZURE_RESOURCEGROUP_NAME: PlayWebsite
+  AZURE_RESOURCEGROUP_NAME: BicepTest-RG
   ENVIRONMENT_TYPE: Test
 
 jobs:
