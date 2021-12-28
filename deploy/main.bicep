@@ -1,6 +1,6 @@
 // main.bicep
 // Requires registration of Microsoft.Web, Insights & AlertsManagment
-// for a test build
+// added secret to Git
 
 @description('The Azure region (location) for deployment.')
 param location string = resourceGroup().location
