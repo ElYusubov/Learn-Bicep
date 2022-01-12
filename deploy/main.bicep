@@ -1,6 +1,5 @@
 // main.bicep
 // Requires registration of Microsoft.Web, Insights & AlertsManagment
-// test tun # 2
 
 @description('The Azure region (location) for deployment.')
 param location string = resourceGroup().location
