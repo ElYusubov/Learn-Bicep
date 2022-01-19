@@ -1,6 +1,8 @@
 // storage-w-loop-containers.bicep
+// Provion a storage account with naming convention
+// Add a child resource to parent resource
+// Add conatiners to the parent blob service from list of values
 
-param notuseful string = 'bad pratices'
 param storageAccountName string = 'clls${uniqueString(resourceGroup().id)}'
 
 var containerNames = [
