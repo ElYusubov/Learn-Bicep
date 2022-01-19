@@ -1,6 +1,7 @@
 // storage-w-loop-containers.bicep
 
-param storageAccountName string = 'stgoug${uniqueString(resourceGroup().id)}'
+param notuseful string = 'bad pratices'
+param storageAccountName string = 'clls${uniqueString(resourceGroup().id)}'
 
 var containerNames = [
  'logs'
@@ -30,7 +31,7 @@ resource myStorageContainer 'Microsoft.Storage/storageAccounts/blobServices/cont
   parent: myStorageBlobServices
 }
 
-// let's automate
+// try automation with enumaration :) 
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = [ for containerName in containerNames: {
   name: '${storageAccount.name}/default/${containerName}'
 }]

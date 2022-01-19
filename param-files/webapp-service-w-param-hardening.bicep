@@ -1,4 +1,4 @@
-// webapp-service-w-param-hardening.bicep
+// webapp-service-w-param-hardening.bicep final clean
 
 @description('Azure region to deploy all resources')
 @allowed([

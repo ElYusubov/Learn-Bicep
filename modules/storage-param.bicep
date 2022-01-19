@@ -2,11 +2,11 @@
 
 @description('The prefix that will appear infront of storage account name.')
 @allowed([
-  'stage21'
-  'test21'
-  'dev21'
+  'dev'
+  'test'
+  'prod'
 ])
-param namePrefix string = 'stage21'
+param namePrefix string = 'dev'
 
 @description('The storage account name.')
 @minLength(3)

@@ -9,6 +9,6 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
   tags: {
     'Environment': 'Demo'
-    'Project': 'Festive Tech Calendar 2021'
+    'Project': 'Cloud Lunch and Learn session for 2022'
   }
 }
