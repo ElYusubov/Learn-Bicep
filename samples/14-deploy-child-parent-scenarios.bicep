@@ -23,6 +23,11 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
 resource myStorageBlobServices 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' = {
   name: 'default'
   parent: storageAccount
+
+  resource internalContainer 'containers@2021-06-01' = {
+    name: 'internalContainer'
+  }
+  
 }
 
 resource myStorageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-06-01' = {
