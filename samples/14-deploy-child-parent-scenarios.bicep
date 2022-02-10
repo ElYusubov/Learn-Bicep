@@ -1,5 +1,6 @@
 // 14-deploy-child-parent-scenarios.bicep
 
+// TODO: add description and variable names
 param storageAccountName string = 'clls${uniqueString(resourceGroup().id)}'
 
 var containerNames = [
@@ -20,6 +21,13 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
 }
 
+// Option 1: child resource created with reference to parent
+resource myStorageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-06-01' = {
+  name: 'data-log'
+  parent: myStorageBlobServices
+}
+
+// Option 2: child resource included into declaration
 resource myStorageBlobServices 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' = {
   name: 'default'
   parent: storageAccount
@@ -30,12 +38,7 @@ resource myStorageBlobServices 'Microsoft.Storage/storageAccounts/blobServices@2
   
 }
 
-resource myStorageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-06-01' = {
-  name: 'data-log'
-  parent: myStorageBlobServices
-}
-
-// try automation with enumaration :) 
+// Option 3: Automation utomation with enumaration :) 
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = [ for containerName in containerNames: {
   name: '${storageAccount.name}/default/${containerName}'
 }]
