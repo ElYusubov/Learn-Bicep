@@ -11,7 +11,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion   // follow a good practice
   tags:{
-    'Project': 'Omaha Azure User Group Demo'
+    'Project': 'Azure User Group Demo'
     'Environment': 'Demo'   
   }
 }

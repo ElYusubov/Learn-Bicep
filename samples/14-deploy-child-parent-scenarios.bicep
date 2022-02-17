@@ -1,7 +1,7 @@
 // 14-deploy-child-parent-scenarios.bicep
 
 @description('The name of the storae account.')
-param storageAccountName string = 'azli${uniqueString(resourceGroup().id)}'
+param storageAccountName string = 'mtf${uniqueString(resourceGroup().id)}'
 
 @description('The list of container names.')
 var containerNames = [
@@ -35,7 +35,7 @@ resource myStorageBlobServices 'Microsoft.Storage/storageAccounts/blobServices@2
   parent: storageAccount
 
   resource internalContainer 'containers@2021-06-01' = {
-    name: 'internalContainer'
+    name: 'internalcontainer'
   }
 }
 
