@@ -14,7 +14,6 @@ az deployment sub what-if --location eastus2 --template-file .\samples\1-deploy-
 # Pre-flight checks before creation / deployment
 az deployment sub create --location eastus2 --template-file .\samples\1-deploy-rg.bicep -c
 
-
 # Storage account deployment to Resource-Group with pre-flight check
 az group create -l eastus -g 'rg-cloudmarathoner'
 az deployment group create -g 'rg-cloudmarathoner' -f .\modules\storage.bicep -c
@@ -79,6 +78,11 @@ az deployment group create -g 'BicepTest-RG' -f .\modules\storage-w-containers.b
 
 # Deploy the 6-deploy-vm.bicep with its parameter file (w reference to KeyVault secret)
 az deployment sub create -l westus2 -f .\samples\6-deploy-vm.bicep -p .\param-files\6-deploy-modules-w-param.dev.json
+
+# Deploy 14-deploy-child-parent-scenarios.bicep
+az group create -n 'rg-parent-child' -l 'eastus'
+az deployment group create -g 'rg-parent-child' -f .\samples\14-deploy-child-parent-scenarios.bicep -c
+
 
 # Helpful troubleshooting references
 # https://docs.microsoft.com/en-us/answers/questions/340510/arm-templates-storageaccountsfileservices-error-34.html

@@ -1,4 +1,4 @@
-// main.bicep - test pipline
+// main.bicep - test pipline 2
 // Requires registration of Microsoft.Web, Insights & AlertsManagment
 
 @description('The Azure region (location) for deployment.')

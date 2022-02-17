@@ -4,7 +4,7 @@ targetScope = 'subscription'
 
 @description('Resource Group name for the deployment')
 @minLength(3)
-param resourceGroupName string = 'rg-BackToSchool-2'
+param resourceGroupName string = 'rg-BackToFuture'
 
 @description('Azure region to deploy all resources')
 @allowed([
@@ -19,7 +19,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Azure Back to School 2021'
+    'Project': 'Azure Back to Future 2022'
     'Environment': 'Dev'   
   }
 }
