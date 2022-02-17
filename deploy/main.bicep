@@ -1,4 +1,4 @@
-// main.bicep  - just run test
+// main.bicep - test pipline
 // Requires registration of Microsoft.Web, Insights & AlertsManagment
 
 @description('The Azure region (location) for deployment.')
@@ -24,7 +24,7 @@ var applicationInsightsName = 'playwebsite'
 @description('Storage account name.')
 var storageAccountName = 'pystg${resourceNameSuffix}'
 
-// Configurations based on SKUs and the environment type
+@description('Configurations based on SKUs and the environment type.')
 var environmentConfigurationMap = {
   Dev: {
     appServicePlan: {
@@ -50,12 +50,14 @@ var environmentConfigurationMap = {
   }
 }
 
+@description('Application Service Plan for the web app.')
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-01-15' = {
   name: appServicePlanName
   location: location
   sku: environmentConfigurationMap[environmentType].appServicePlan.sku
 }
 
+@description('Web App with instrumentation key.')
 resource appServiceApp 'Microsoft.Web/sites@2021-01-15' = {
   name: appServiceAppName
   location: location
@@ -76,6 +78,7 @@ resource appServiceApp 'Microsoft.Web/sites@2021-01-15' = {
   }
 }
 
+@description('App Insights')
 resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: applicationInsightsName
   location: location
@@ -87,6 +90,7 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
   }
 }
 
+@description('Storage account of the deployment.')
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   name: storageAccountName
   location: location
