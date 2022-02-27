@@ -15,6 +15,7 @@ param resourceGroupName string = 'rg-BackToFuture'
 ])
 param azureRegion string = 'eastus2'
 
+@description('Resource group declaration for the storage account.')
 resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion
@@ -24,6 +25,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   }
 }
 
+@description('Storage declaration from exisiting module with a preset parameter')
 module storageModule '../modules/storage-param.bicep' = {
   scope: resourceGroup(myResourceGroup.name)
   name: 'storageDeployment-${uniqueString(myResourceGroup.id)}' // dynamic deployment name
