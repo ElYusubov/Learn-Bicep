@@ -2,6 +2,7 @@
 
 targetScope = 'subscription'
 
+@description('Defined list of allowed locations.')
 param listOfAllowedLocations array = [
   'eastus'
   'eastus2'
@@ -9,12 +10,14 @@ param listOfAllowedLocations array = [
   'westus2'
 ]
 
+@description('Policy action options.')
 @allowed([
   'Audit'
   'Deny'
 ])
 param policyEffect string
 
+@description('A Policy definition for the location.')
 resource locationPolicyDefinition 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
   name: 'Allowed-location-eastus-eastus2'
   properties: {
@@ -56,6 +59,7 @@ resource locationPolicyDefinition 'Microsoft.Authorization/policyDefinitions@202
   }
 }
 
+@description('A Policy assignment with a location definition.')
 resource locationPolicy 'Microsoft.Authorization/policyAssignments@2020-09-01' = {
   name: 'Resource-location-restriction'
   properties: {
