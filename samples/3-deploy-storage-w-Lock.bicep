@@ -2,11 +2,13 @@
 
 targetScope = 'subscription'
 
-// parametrize inputs
+@description('Resource group name.')
 param resourceGroupName string = 'storage-eastus2-demo'
+
+@description('Azure region selection.')
 param azureRegion string = 'eastus2' 
 
-// add resource group
+@description('Resource group defintion')
 resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion   // follow a good practice
@@ -16,6 +18,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   }
 }
 
+@description('Storage module with a parameter defined.')
 module storageModule '../modules/storage-param.bicep' = {
   scope: resourceGroup(myResourceGroup.name)
   name: 'storageDeployment-${uniqueString(myResourceGroup.id)}' // dynamic deployment name
