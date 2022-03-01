@@ -29,7 +29,7 @@ resource myStorageContainer 'Microsoft.Storage/storageAccounts/blobServices/cont
   parent: myStorageBlobServices
 }
 
-@description('Option 2: child resource included into declaration')
+@description('Option 2: including a child resource in the declaration.')
 resource myStorageBlobServices 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' = {
   name: 'default'
   parent: storageAccount
@@ -39,7 +39,7 @@ resource myStorageBlobServices 'Microsoft.Storage/storageAccounts/blobServices@2
   }
 }
 
-@description('Option 3: Automation utomation with enumaration :) ')
+@description('Option 3: Automation and looping with enumeration :) ')
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = [ for containerName in containerNames: {
   name: '${storageAccount.name}/default/${containerName}'
 }]
