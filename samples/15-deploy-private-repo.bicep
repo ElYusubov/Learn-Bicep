@@ -1,6 +1,9 @@
 // 15-deploy-private-repo.bicep
 
 // Step-1: Create Azure container registry (ACR)
+// az group create --name myACR-rg --location eastus
+// az acr create --resource-group myACR-rg --name myBicepRegistry37 --sku Basic
+
 
 // Step-2: Get the login server name of the ACR
 
