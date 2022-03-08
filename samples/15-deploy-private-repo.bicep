@@ -6,6 +6,8 @@
 
 
 // Step-2: Get the login server name of the ACR
+// az acr login --name myBicepRegistry37
+
 
 // Step-3: Publish a Bicep file as a module to a private module registry
 
