@@ -15,7 +15,7 @@ param userName string
 @secure()
 param secretPass string
 
-// add an APP service resource group
+@description('Resource Group for Application workloads.')
 resource myAppResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: appResourceGroupName
   location: azureRegion
@@ -28,6 +28,9 @@ resource myAppResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
 module appService '../modules/appservice.bicep' = {
   scope: resourceGroup(myAppResourceGroup.name)
   name: 'webAppDeployment-${uniqueString(myAppResourceGroup.id)}'
+  params: {
+    location: azureRegion
+  }
 }
 
 
@@ -73,4 +76,7 @@ module storageModule '../modules/storage-param.bicep' = {
 module cosmosDBModule '../modules/cosmosdb.bicep' = {
   scope: resourceGroup(storageResourceGroup.name)
   name: 'cosmosDBDeployment-${uniqueString(storageResourceGroup.id)}'
+  params: {
+    location: azureRegion
+  }
 }
