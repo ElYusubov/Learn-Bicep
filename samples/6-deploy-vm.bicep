@@ -2,16 +2,23 @@
 
 targetScope = 'subscription'
 
-// parametrized inputs used in parameter file
+@description('An Azure Resource Group name')
 param resourceGroupName string
+
+@description('Azure region')
 param azureRegion string 
+
+@description('Application resource Group name')
 param appResourceGroupName string
+
+@description('User Name')
 param userName string
 
+@description('Secure secret/pass')
 @secure()
 param secretPass string
 
-// add APP service resource group
+@description('App Resource Group definition')
 resource myAppResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: appResourceGroupName
   location: azureRegion
@@ -21,13 +28,14 @@ resource myAppResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   }
 }
 
+@description('App Services from module')
 module appService '../modules/appservice.bicep' = {
   scope: resourceGroup(myAppResourceGroup.name)
   name: 'webAppDeployment-${uniqueString(myAppResourceGroup.id)}'
 }
 
 
-// add VM resource group
+@description('Resource Group for VM workloads')
 resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion
@@ -37,6 +45,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   }
 }
 
+@description('Win VM definition from module')
 module winVMModule '../modules/vm-win.bicep' = {
   scope: resourceGroup(myResourceGroup.name)
   name: 'winVMDeployment-${uniqueString(myResourceGroup.id)}' // dynamic deployment name
