@@ -1,4 +1,4 @@
-// main.bicep - test for prep
+// main.bicep - new test
 // Requires registration of Microsoft.Web, Insights & AlertsManagment
 
 @description('The Azure region (location) for deployment.')
