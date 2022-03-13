@@ -1,3 +1,6 @@
+// vm-win.bicep
+// builds windows VM from provided SKUs
+
 param adminUserName string
 
 @secure()
