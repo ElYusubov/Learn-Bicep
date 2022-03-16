@@ -84,6 +84,21 @@ az group create -n 'rg-parent-child' -l 'eastus'
 az deployment group create -g 'rg-parent-child' -f .\samples\14-deploy-child-parent-scenarios.bicep -c
 
 
+# Deploy 15-deploy-private =-repo.bicep 
+az group create --name mydemo15 --location eastus
+az deployment group create --resource-group mydemo15 --template-file .\modules\acr-registry.bicep --parameters acrName=azwelshug0315 -c
+
+# Get login server name
+az acr show --resource-group mydemo15 --name azwelshug0315.azurecr.io --query loginServer
+# Sample response: azwelshug0315.azurecr.io
+
+# Publish modules/appservice.bicep
+az bicep publish --file .\modules\appservice.bicep --target br:azwelshug0315.azurecr.io/bicep/modules/appservice:v1
+# Artifact reference azwelshug0315.azurecr.io/bicep/modules/appservice:v1
+
+# Deploy Azure resources using private Bicep registry
+az deployment group create -g 'mydemo15' -f .\samples\15-deploy-private-repo.bicep -c
+
 # Helpful troubleshooting references
 # https://docs.microsoft.com/en-us/answers/questions/340510/arm-templates-storageaccountsfileservices-error-34.html
 # https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/file
