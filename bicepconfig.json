@@ -27,5 +27,17 @@
           }
         }
       }
+    },
+    "moduleAliases": {
+      "ts": {},
+      "br": {
+        "MyRegistry": {
+          "registry": "azwelshug0315.azurecr.io"
+        },
+        "CoreModules": {
+          "registry": "azwelshug0315.azurecr.io",
+          "modulePath": "bicep/modules"
+        }
+      }
     }
   }

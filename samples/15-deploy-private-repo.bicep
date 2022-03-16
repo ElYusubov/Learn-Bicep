@@ -17,3 +17,11 @@ module regAppService 'br:azwelshug0315.azurecr.io/bicep/modules/appservice:v1' =
     appServiceAppName: 'azwelshug0315'
   }
 }
+
+// module regAppService2 'br/CoreModules:appservice:v1' = {
+//   name: 'appServiceDeploy2'
+//   params: {
+//     location: 'eastus'
+//     appServiceAppName: 'azwelshug0315'
+//   }
+// }
