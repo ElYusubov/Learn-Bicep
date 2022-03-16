@@ -10,18 +10,18 @@
 
 // Step-4: Call the private module in your Bicep code
 
-module regAppService 'br:azwelshug0315.azurecr.io/bicep/modules/appservice:v1' = {
-  name: 'appServiceDeploy'
-  params: {
-    location: 'eastus'
-    appServiceAppName: 'azwelshug0315'
-  }
-}
-
-// module regAppService2 'br/CoreModules:appservice:v1' = {
-//   name: 'appServiceDeploy2'
+// module regAppService 'br:azwelshug0315.azurecr.io/bicep/modules/appservice:v1' = {
+//   name: 'appServiceDeploy'
 //   params: {
 //     location: 'eastus'
 //     appServiceAppName: 'azwelshug0315'
 //   }
 // }
+
+module regAppService2 'br/CoreModules:appservice:v2' = {
+  name: 'appServiceDeploy2'
+  params: {
+    location: 'eastus'
+    appServiceAppName: 'newapp031555'
+  }
+}

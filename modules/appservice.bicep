@@ -1,8 +1,11 @@
 // appservice.bicep
 
+@description('Provide a Azure deployment region/location for the registry.')
 param location string = resourceGroup().location
-param appServiceAppName string = 'bicepapp${uniqueString(resourceGroup().id)}'
-param appServicePlanName string = 'bicepapp-plan'
+@description('App service name.')
+param appServiceAppName string = 'myapp${uniqueString(resourceGroup().id)}'
+@description('App service plan name.')
+param appServicePlanName string = 'myapp-plan'
 
 resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   name: appServicePlanName
@@ -22,4 +25,5 @@ resource appServiceApp 'Microsoft.Web/sites@2020-06-01' = {
   }
 }
 
+@description('Provides a deployed apps host name.')
 output webAppHostName string = appServiceApp.properties.defaultHostName

@@ -18,7 +18,6 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
 }
 
-
 resource testStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: 'teststgschool0956'
   location: location
