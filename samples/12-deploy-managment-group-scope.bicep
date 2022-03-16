@@ -1,3 +1,6 @@
+@description('Specifies the location for resources.')
+param deploymenRegion string = 'eastus2'
+
 targetScope = 'managementGroup'
 
 @description('Azure Security Benchmark policy')
@@ -8,7 +11,7 @@ param policyName string = 'Azure Key Vaults should use private link'
 
 resource policyAssignment 'Microsoft.Authorization/policyAssignments@2021-06-01' = {
   name: policyName
-  location: 'eastus2'
+  location: deploymenRegion
   identity: {
     type: 'SystemAssigned'
   }

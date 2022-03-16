@@ -3,6 +3,9 @@
 @description('The name of the storae account.')
 param storageAccountName string = 'mtf${uniqueString(resourceGroup().id)}'
 
+@description('Azure deployment region.')
+param deploymentRegion string = resourceGroup().location
+
 @description('The list of container names.')
 var containerNames = [
  'logs'
@@ -13,7 +16,7 @@ var containerNames = [
 @description('A parent storage account resource.')
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: storageAccountName
-  location: resourceGroup().location
+  location: deploymentRegion
   kind: 'StorageV2'
   sku: {
     name: 'Standard_GRS'

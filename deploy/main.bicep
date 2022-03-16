@@ -1,4 +1,4 @@
-// main.bicep - next run
+// main.bicep
 // Requires registration of Microsoft.Web, Insights & AlertsManagment
 
 @description('The Azure region (location) for deployment.')
