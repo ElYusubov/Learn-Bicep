@@ -18,6 +18,8 @@ az acr list --query [].name -o table
 az acr show --resource-group mydemo15 --name azwelshug0315.azurecr.io --query loginServer
 # Sample response: azwelshug0315.azurecr.io
 
+az acr repository list --name azwelshug0315.azurecr.io --output table
+
 # Publish modules/appservice.bicep
 az bicep publish --file .\modules\appservice.bicep --target br:azwelshug0315.azurecr.io/bicep/modules/appservice:v2
 # Artifact reference azwelshug0315.azurecr.io/bicep/modules/appservice:v1
