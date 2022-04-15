@@ -1,3 +1,4 @@
+
 targetScope = 'subscription'
 
 @description('Specifies the location for resources.')
