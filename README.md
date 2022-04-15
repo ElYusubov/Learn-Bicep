@@ -15,6 +15,9 @@ The "Learn Bicep" is a simple, yet powerful step-by-step learning guide with eas
 - [How to check and update Azure CLI version on your workstation?](https://thecloudmarathoner.com/index.php/2021/09/02/how-to-check-and-update-azure-cli-verison-on-your-workstation/)
 - [What is new in Azure Bicep v0.4?](https://thecloudmarathoner.com/index.php/2021/07/30/what-is-new-in-azure-bicep-v0-4/)
 - [Troubleshooting an error on Bicep module – on Azure CLI (2.22.0) for Windows 10](https://thecloudmarathoner.com/index.php/2021/04/19/error-on-bicep-module-on-azure-cli-2-22-0-for-windows-10/)
+- [Setting up your first Azure Bicep private registry](https://thecloudmarathoner.com)
+- [What you can do with Azure Bicep Pubic registry](https://thecloudmarathoner.com)
+
 
 ## Introduction
 
