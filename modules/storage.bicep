@@ -1,6 +1,6 @@
 // storage.bicep
 
-param storageName string = 'stgbacktoschool942021'
+param storageName string = 'stgglobalazure0507'
 param location string = resourceGroup().location
 param environment string = 'dev'
 var storageAccountSkuName = (environment == 'prod') ? 'Standard_GRS' : 'Standard_LRS'
@@ -19,7 +19,7 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
 }
 
 resource testStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: 'teststgschool0956'
+  name: 'teststgglazure0507'
   location: location
   kind: 'StorageV2'
   sku: {
