@@ -10,6 +10,8 @@ param databaseName string
 @description('The name of our container')
 param containerName string
 
+@minValue(400)
+@maxValue(10000)
 @description('The amount of throughput to provision in our Cosmos DB Container')
 param containerThroughput int
 
