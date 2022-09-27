@@ -1,7 +1,7 @@
 // 14-deploy-child-parent-scenarios.bicep
 
 @description('The name of the storae account.')
-param storageAccountName string = 'mtf${uniqueString(resourceGroup().id)}'
+param storageAccountName string = 'latam${uniqueString(resourceGroup().id)}'
 
 @description('Azure deployment region.')
 param deploymentRegion string = resourceGroup().location

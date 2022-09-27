@@ -20,8 +20,8 @@ resource myAppResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: appResourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Festive Tech Calendar 2021'
-    'Environment': 'Demo'
+    Project: 'Festive Tech Calendar 2021'
+    Environment: 'Demo'
   }
 }
 
@@ -78,5 +78,9 @@ module cosmosDBModule '../modules/cosmosdb.bicep' = {
   name: 'cosmosDBDeployment-${uniqueString(storageResourceGroup.id)}'
   params: {
     location: azureRegion
+    containerName: 'latameysamp2022'
+    containerThroughput: 500
+    cosmosDbAccountName: 'latamey82022'
+    databaseName: 'SampleLatam2022'
   }
 }
