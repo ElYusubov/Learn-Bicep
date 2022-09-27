@@ -20,7 +20,7 @@ resource myAppResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: appResourceGroupName
   location: azureRegion
   tags:{
-    Project: 'Festive Tech Calendar 2021'
+    Project: 'Azure Back to School 2022'
     Environment: 'Demo'
   }
 }
@@ -39,7 +39,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Festive Tech Calendar 2021'
+    'Project': 'Azure Back to School 2022'
     'Environment': 'Demo'
   }
 }
@@ -60,7 +60,7 @@ resource storageResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = 
   name: storageResourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Festive Tech Calendar 2021'
+    'Project': 'Azure Back to School 2022'
     'Environment': 'Demo'
   }
 }
@@ -78,9 +78,9 @@ module cosmosDBModule '../modules/cosmosdb.bicep' = {
   name: 'cosmosDBDeployment-${uniqueString(storageResourceGroup.id)}'
   params: {
     location: azureRegion
-    containerName: 'latameysamp2022'
+    containerName: 'b2seysamp2022'
     containerThroughput: 500
-    cosmosDbAccountName: 'latamey82022'
-    databaseName: 'SampleLatam2022'
+    cosmosDbAccountName: 'b2sey82022'
+    databaseName: 'SampleBack2School2022'
   }
 }
