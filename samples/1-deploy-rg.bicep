@@ -15,9 +15,9 @@ var deleteMe = 'default'
 @description('Created a resource group')
 resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
-  location: azureRegion   // is this a good practice
+  location: azureRegion
   tags:{
-    'Project': 'Flying to Azure Future 2022'
-    'Environment': 'Dev'   
+    'Project': 'Azure Back to School 2022'
+    'Environment': 'Demo'   
   }
 }
