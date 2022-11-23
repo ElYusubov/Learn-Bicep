@@ -1,5 +1,5 @@
 // main.bicep - a SL pipline run
-// Requires registration of Microsoft.Web, Insights & AlertsManagment
+// Requires registration of Microsoft.Web, Insights and AlertsManagment
 
 @description('The Azure region (location) for deployment.')
 param location string = resourceGroup().location
