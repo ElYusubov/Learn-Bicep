@@ -1,5 +1,6 @@
 // minimum-storage.bicep
 param region string = resourceGroup().location
+param notHelpful string = 'new'
 
 resource storageaccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   name: 'nextstgba2sc25'
@@ -10,12 +11,12 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   }
   tags: {
     Environment: 'Demo'
-    Project: 'Azure Dominicana 2022'
+    Project: 'Azure December Joy 2022'
   }
 }
 
 resource stgaccount2 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: 'azdominey0929'
+  name: 'azfestive1216'
   location: region
   kind: 'StorageV2'
   sku: {
