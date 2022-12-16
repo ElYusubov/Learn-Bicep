@@ -13,6 +13,9 @@
           "no-unused-vars": {
             "level":"warning"
           },
+          "no-unused-existing-resources":{
+            "level": "warning"
+          },
           "prefer-interpolation": {
             "level": "warning"
           },
