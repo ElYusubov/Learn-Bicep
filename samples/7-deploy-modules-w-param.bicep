@@ -60,8 +60,8 @@ resource storageResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = 
   name: storageResourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Azure Dominicana 2022'
-    'Environment': 'Demo'
+    Project: 'Azure Dominicana 2022'
+    Environment: 'Demo'
   }
 }
 
@@ -70,6 +70,7 @@ module storageModule '../modules/storage-param.bicep' = {
   name: 'storageDeployment-${uniqueString(storageResourceGroup.id)}'
   params: {
     geoRedundancy: false
+    azureRegion:azureRegion
   }
 }
 
