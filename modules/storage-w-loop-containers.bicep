@@ -3,7 +3,8 @@
 // Add a child resource to parent resource
 // Add conatiners to the parent blob service from list of values
 
-param storageAccountName string = 'clls${uniqueString(resourceGroup().id)}'
+param storageAccountName string = 'ftc${uniqueString(resourceGroup().id)}'
+param azureregion string = resourceGroup().location
 
 var containerNames = [
  'logs'
@@ -13,7 +14,7 @@ var containerNames = [
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: storageAccountName
-  location: resourceGroup().location
+  location: azureregion
   kind: 'StorageV2'
   sku: {
     name: 'Standard_GRS'
@@ -33,7 +34,17 @@ resource myStorageContainer 'Microsoft.Storage/storageAccounts/blobServices/cont
   parent: myStorageBlobServices
 }
 
-// try automation with enumaration :) 
+// using enumaration 
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = [ for containerName in containerNames: {
   name: '${storageAccount.name}/default/${containerName}'
 }]
+
+
+// lock the storage account to prevent accidential deletion
+resource lockResourceGroup 'Microsoft.Authorization/locks@2016-09-01' = {
+  name: 'DontDelete'
+  scope: storageAccount
+  properties: {
+    level: 'CanNotDelete'
+  }
+}

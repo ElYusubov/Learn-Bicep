@@ -23,3 +23,13 @@ resource stgaccount2 'Microsoft.Storage/storageAccounts@2021-02-01' = {
     name: 'Standard_LRS'
   }
 }
+
+resource stgFestiveDrive 'Microsoft.Storage/storageAccounts@2021-02-01' = {
+  name: 'azfestivecalendar2022'
+  location: region
+  kind: 'StorageV2'
+  sku: {
+    name: 'Standard_LRS'
+  }
+}
+

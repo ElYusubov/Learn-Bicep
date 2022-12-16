@@ -19,9 +19,11 @@ var stgName = toLower(paramStorageName)
 @description('The flag that set the geo-redundant storage.')
 param geoRedundancy bool
 
+param azureRegion string = resourceGroup().location
+
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: stgName
-  location: resourceGroup().location
+  location: azureRegion
   kind: 'StorageV2' 
   sku: {
     name: geoRedundancy ? 'Standard_GRS' : 'Standard_LRS'
