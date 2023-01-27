@@ -1,4 +1,4 @@
-// main.bicep - a SL pipline run
+// main.bicep - test the pipeline
 // Requires registration of Microsoft.Web, Insights and AlertsManagment
 
 @description('The Azure region (location) for deployment.')
