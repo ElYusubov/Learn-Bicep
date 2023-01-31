@@ -27,6 +27,6 @@ az bicep publish --file .\modules\appservice.bicep --target br:azwelshug0315.azu
 # Deploy Azure resources using private Bicep registry
 az deployment group create -g 'mydemo15' -f .\samples\15-deploy-private-repo.bicep -c
 
-# Query the list of exisiting apps
+# Query the list of exisiting web apps
 az webapp list -o table
 az webapp show -g mydemo15 --name newapp031555 -o table
