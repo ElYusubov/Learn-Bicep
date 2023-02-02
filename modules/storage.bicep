@@ -1,8 +1,9 @@
 // storage.bicep
 
-param prefix string = 'baey2s927'
+param prefix string = 'bae0201'
 param storageName string = 'stg${prefix}'
 param location string = resourceGroup().location
+
 param environment string = 'dev'
 var storageAccountSkuName = (environment == 'prod') ? 'Standard_GRS' : 'Standard_LRS'
 var accountName = '${storageName}${environment}'
@@ -19,8 +20,8 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
 }
 
-resource testStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: 'tstel${prefix}'
+resource tstStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
+  name: 'tst01${prefix}'
   location: location
   kind: 'StorageV2'
   sku: {

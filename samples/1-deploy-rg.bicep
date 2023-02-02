@@ -17,7 +17,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Azure Back to School 2022'
-    'Environment': 'Demo'   
+    Project: 'Azure Back to School 2022'
+    Environment: 'Demo'   
   }
 }
