@@ -1,3 +1,4 @@
+// 10-deploy-multi-resourceGroups-module.bicep
 
 targetScope = 'subscription'
 

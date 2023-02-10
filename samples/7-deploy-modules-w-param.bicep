@@ -39,7 +39,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion
   tags:{
-    Project: 'Azure Dominicana 2022'
+    Project: 'Azure Demo Meetup'
     Environment: 'Demo'
   }
 }
@@ -60,7 +60,7 @@ resource storageResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = 
   name: storageResourceGroupName
   location: azureRegion
   tags:{
-    Project: 'Azure Dominicana 2022'
+    Project: 'Azure Demo Meetup'
     Environment: 'Demo'
   }
 }
@@ -82,6 +82,6 @@ module cosmosDBModule '../modules/cosmosdb.bicep' = {
     containerName: 'b2seysamp2022'
     containerThroughput: 500
     cosmosDbAccountName: 'b2sey82022'
-    databaseName: 'SampleBack2School2022'
+    databaseName: 'SampleDmoCosmos82022'
   }
 }

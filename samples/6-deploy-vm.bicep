@@ -23,8 +23,8 @@ resource myAppResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: appResourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Azure CLL session 2021'
-    'Environment': 'Demo'
+    Project: 'Azure Back to School Demo02'
+    Environment: 'Demo'
   }
 }
 
@@ -40,8 +40,8 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Azure Back to School 2021'
-    'Environment': 'Demo'
+    Project: 'Azure Back to School Demo02'
+    Environment: 'Demo'
   }
 }
 
