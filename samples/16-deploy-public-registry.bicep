@@ -4,7 +4,7 @@
 module helloWorld 'br/public:samples/hello-world:1.0.1' = {
   name: 'helloWorld'
   params: {
-    name: 'Global Azure 2022 developers'
+    name: 'Global Azure Demo developers'
   }
 }
 
