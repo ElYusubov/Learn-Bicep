@@ -1,4 +1,5 @@
 // 6-deploy-vm.bicep
+// Deployment scope: subscription
 
 targetScope = 'subscription'
 

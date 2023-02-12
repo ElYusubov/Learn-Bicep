@@ -1,4 +1,5 @@
 // 5-deploy-fail.bicep
+// Deployment scope: subscription
 
 targetScope = 'subscription'
 
