@@ -1,4 +1,5 @@
 // 3-deploy-storage-w-Lock.bicep
+// Deployment scope: subscription
 
 targetScope = 'subscription'
 

@@ -1,4 +1,5 @@
 // 1-deploy-rg.bicep
+// Deployment scope: subscription
 
 targetScope = 'subscription'
 
