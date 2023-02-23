@@ -19,8 +19,8 @@ resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2020-04-01' = {
     ]
   }
   tags:{
-    'Project': 'Azure Cosmos DB'
-    'Environment': 'Demo'
+    Project: 'Azure Cosmos demo'
+    Environment: 'Demo'
   }
 }
 
@@ -35,7 +35,7 @@ resource cosmosdb 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2020-04-01
     }
   }
   tags:{
-    'Project': 'Azure Cosmos DB'
-    'Environment': 'Demo'
+    Project: 'Azure Cosmos demo'
+    Environment: 'Demo'
   }
 }

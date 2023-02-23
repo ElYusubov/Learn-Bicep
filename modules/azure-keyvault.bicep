@@ -5,6 +5,8 @@
 @description('Key vault name')
 param keyVaultName string = 'mykeyvault114'
 
+param azureRegion string = resourceGroup().location
+
 // replace with your tenant-id
 param keyObjectId string
 // replace with your tenant-id
@@ -12,7 +14,7 @@ param tenantId string
 
 resource keyVault 'Microsoft.KeyVault/vaults@2019-09-01' = {
   name: keyVaultName
-  location: resourceGroup().location
+  location: azureRegion
   properties: {
     enabledForDeployment: true
     enabledForTemplateDeployment: true

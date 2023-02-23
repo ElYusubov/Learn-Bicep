@@ -1,3 +1,5 @@
+// eventHubRoleAssignment.bicep
+
 @description('The Name of the Event Hubs Namepace')
 param eventHubNamespaceName string
 
