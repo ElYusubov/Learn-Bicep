@@ -14,8 +14,8 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion   // follow a good practice
   tags:{
-    'Project': 'Azure User Group Demo'
-    'Environment': 'Demo'   
+    Project: 'Azure User Group Demo'
+    Environment: 'Demo'   
   }
 }
 
@@ -25,5 +25,6 @@ module storageModule '../modules/storage-param.bicep' = {
   name: 'storageDeployment-${uniqueString(myResourceGroup.id)}' // dynamic deployment name
   params: {
     geoRedundancy: false
+    azureRegion: azureRegion
   }
 }

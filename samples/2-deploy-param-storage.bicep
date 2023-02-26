@@ -21,8 +21,8 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion
   tags:{
-    'Project': 'Azure Back to Future 2022'
-    'Environment': 'Dev'   
+    Project: 'Azure Back to Future 2022'
+    Environment: 'Dev'
   }
 }
 
@@ -32,5 +32,6 @@ module storageModule '../modules/storage-param.bicep' = {
   name: 'storageDeployment-${uniqueString(myResourceGroup.id)}' // dynamic deployment name
   params: {
     geoRedundancy: false
+    azureRegion: azureRegion
   }
 }
