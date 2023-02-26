@@ -1,7 +1,7 @@
 // appservice.bicep
 
 @description('Provide a Azure deployment region/location for the registry.')
-param location string = resourceGroup().location
+param location string
 
 @description('App service name.')
 param appServiceAppName string = 'myapp${uniqueString(resourceGroup().id)}'

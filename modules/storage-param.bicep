@@ -17,7 +17,7 @@ param paramStorageName string = '${namePrefix}${uniqueString(resourceGroup().id)
 var stgName = toLower(paramStorageName)
 
 @description('The flag that set the geo-redundant storage.')
-param geoRedundancy bool
+param geoRedundancy bool = false
 
 param azureRegion string = resourceGroup().location
 
