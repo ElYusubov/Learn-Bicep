@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_bicep_webapp_01_name": {
+            "value": "bicep-next-site02"
+        },
+        "serverfarms_asp_bicep_webapps_name": {
+            "value": "asp-bicep-next-sites"
+        },
+        "components_bicep_webapp_insights_name": {
+            "value": "appinsigts-bicep-next-site"
+        },
+        "workspaces_DefaultWorkspace_e4c4d422_9526_4abc_bd5d_f74409a79551_EUS2_externalid": {
+            "value": "/subscriptions/e4c4d422-9526-4abc-bd5d-f74409a79551/resourceGroups/DefaultResourceGroup-EUS2/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-e4c4d422-9526-4abc-bd5d-f74409a79551-EUS2"
+        }
+    }
+}
