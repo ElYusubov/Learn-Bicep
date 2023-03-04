@@ -1,3 +1,5 @@
+// cosmosdb.bicep
+
 @description('The location that these Cosmos DB resources will be deployed to')
 param location string
 
