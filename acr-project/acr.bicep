@@ -1,6 +1,6 @@
 // you can use powershell or CLI to create 
-// az group create -n 'my-regstry' -l 'eastus2'
-// az acr create --name "newbicepregistry" --sku Basic -g 'my-regstry'
+// az group create -n 'kineteco-private-registry-test-eastus2' -l 'eastus2'
+// az acr create --name "kinetecodevregistry" --sku Basic -g 'kineteco-private-registry-test-eastus2'
 
 // az bicep publish --file acr.bicep --target br:bicepPart1PrivateRegistry.azurecr.io/bicep/modules/acr:v1
 
