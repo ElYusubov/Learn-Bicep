@@ -1,0 +1,20 @@
+Workspace Default: /subscriptions/e4c4d422-9526-4abc-bd5d-f74409a79551/resourceGroups/DefaultResourceGroup-EUS2/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-e4c4d422-9526-4abc-bd5d-f74409a79551-EUS2
+
+Subscription
+CTE - Courseware Development 06 [COGS]
+Resource group
+bicep-part1-nextapp-eastus2
+Region
+East US 2
+Sites_bicep_webapp_01_name
+bicep-webapp-01
+Serverfarms_asp_bicep_webapps_name
+asp-bicep-webapps
+Storage Accounts_bicepsitestg01_name
+bicepnextsitestg01
+Storage Accounts_bicepsitestg02_name
+bicepnextsitestg02
+Components_bicep_webapp_insights_name
+bicep-webapp-insights
+Workspaces_Default Workspace_e4c4d422_9526_4abc_bd5d_f74409a79551_EUS2_externalid
+/subscriptions/e4c4d422-9526-4abc-bd5d-f74409a79551/resourceGroups/Def

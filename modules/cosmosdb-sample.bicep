@@ -1,3 +1,5 @@
+// cosmosdb-sample.bicep
+
 param appName string = uniqueString(resourceGroup().id)
 param accountName string = toLower('cosmos-${appName}')
 param location string = resourceGroup().location

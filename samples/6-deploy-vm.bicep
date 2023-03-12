@@ -33,6 +33,9 @@ resource myAppResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
 module appService '../modules/appservice.bicep' = {
   scope: resourceGroup(myAppResourceGroup.name)
   name: 'webAppDeployment-${uniqueString(myAppResourceGroup.id)}'
+  params: {
+    location: azureRegion
+  }
 }
 
 

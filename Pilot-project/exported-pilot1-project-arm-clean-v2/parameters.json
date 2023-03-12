@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_kinetEco35_webapp_name": {
+            "value": null
+        },
+        "serverfarms_kinetEco35_appplan_name": {
+            "value": null
+        },
+        "components_kinetEco35_appinsights_name": {
+            "value": null
+        },
+        "storageAccounts_kinetecotracking35stg1_name": {
+            "value": null
+        }
+    }
+}

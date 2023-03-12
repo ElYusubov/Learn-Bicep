@@ -15,7 +15,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   location: azureRegion   // follow a good practice
   tags:{
     Project: 'Azure Demo'
-    Environment: 'Dev'   
+    Environment: 'Dev'
   }
 }
 

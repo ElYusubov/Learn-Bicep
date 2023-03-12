@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appNamePrefix": {
+      "value": "kinet350dev"
+    },
+    "webappName": {
+      "value": "kinet350dev-webapp"
+    },
+    "appServicePlanName": {
+      "value": "kinet350dev-appplan"
+    },
+    "appInsightsName": {
+      "value": "kinet350dev-appinsights"
+    },
+    "appStorageAccountName": {
+      "value": "kinet350devstg35"
+    },
+    "vNetName": {
+      "value": "kinet350dev-vnet"
+    }
+  }
+}

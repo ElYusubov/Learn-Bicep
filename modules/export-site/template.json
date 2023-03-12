@@ -1,0 +1,1269 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_bicep_webapp_01_name": {
+            "defaultValue": "bicep-webapp-05",
+            "type": "String"
+        },
+        "serverfarms_asp_bicep_webapps_name": {
+            "defaultValue": "asp-bicep-webapps-05",
+            "type": "String"
+        },
+        "components_bicep_webapp_insights_name": {
+            "defaultValue": "bicep-webapp-insights-05",
+            "type": "String"
+        },
+        "workspaces_DefaultWorkspace_e4c4d422_9526_4abc_bd5d_f74409a79551_EUS2_externalid": {
+            "defaultValue": "/subscriptions/e4c4d422-9526-4abc-bd5d-f74409a79551/resourceGroups/DefaultResourceGroup-EUS2/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-e4c4d422-9526-4abc-bd5d-f74409a79551-EUS2",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "microsoft.insights/components",
+            "apiVersion": "2020-02-02",
+            "name": "[parameters('components_bicep_webapp_insights_name')]",
+            "location": "eastus2",
+            "tags": {
+                "Project": "Bicep-Part1",
+                "Environment": "Test"
+            },
+            "kind": "web",
+            "properties": {
+                "Application_Type": "web",
+                "Flow_Type": "Bluefield",
+                "Request_Source": "IbizaWebAppExtensionCreate",
+                "RetentionInDays": 90,
+                "WorkspaceResourceId": "[parameters('workspaces_DefaultWorkspace_e4c4d422_9526_4abc_bd5d_f74409a79551_EUS2_externalid')]",
+                "IngestionMode": "LogAnalytics",
+                "publicNetworkAccessForIngestion": "Enabled",
+                "publicNetworkAccessForQuery": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2022-03-01",
+            "name": "[parameters('serverfarms_asp_bicep_webapps_name')]",
+            "location": "East US 2",
+            "tags": {
+                "Project": "Bicep-Part1",
+                "Environment": "Test"
+            },
+            "sku": {
+                "name": "B1",
+                "tier": "Basic",
+                "size": "B1",
+                "family": "B",
+                "capacity": 1
+            },
+            "kind": "app",
+            "properties": {
+                "perSiteScaling": false,
+                "elasticScaleEnabled": false,
+                "maximumElasticWorkerCount": 1,
+                "isSpot": false,
+                "reserved": false,
+                "isXenon": false,
+                "hyperV": false,
+                "targetWorkerCount": 0,
+                "targetWorkerSizeId": 0,
+                "zoneRedundant": false
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/degradationindependencyduration')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "degradationindependencyduration",
+                    "DisplayName": "Degradation in dependency duration",
+                    "Description": "Smart Detection rules notify you of performance anomaly issues.",
+                    "HelpUrl": "https://docs.microsoft.com/en-us/azure/application-insights/app-insights-proactive-performance-diagnostics",
+                    "IsHidden": false,
+                    "IsEnabledByDefault": true,
+                    "IsInPreview": false,
+                    "SupportsEmailNotifications": true
+                },
+                "enabled": true,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/degradationinserverresponsetime')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "degradationinserverresponsetime",
+                    "DisplayName": "Degradation in server response time",
+                    "Description": "Smart Detection rules notify you of performance anomaly issues.",
+                    "HelpUrl": "https://docs.microsoft.com/en-us/azure/application-insights/app-insights-proactive-performance-diagnostics",
+                    "IsHidden": false,
+                    "IsEnabledByDefault": true,
+                    "IsInPreview": false,
+                    "SupportsEmailNotifications": true
+                },
+                "enabled": true,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/digestMailConfiguration')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "digestMailConfiguration",
+                    "DisplayName": "Digest Mail Configuration",
+                    "Description": "This rule describes the digest mail preferences",
+                    "HelpUrl": "www.homail.com",
+                    "IsHidden": true,
+                    "IsEnabledByDefault": true,
+                    "IsInPreview": false,
+                    "SupportsEmailNotifications": true
+                },
+                "enabled": true,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/extension_billingdatavolumedailyspikeextension')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "extension_billingdatavolumedailyspikeextension",
+                    "DisplayName": "Abnormal rise in daily data volume (preview)",
+                    "Description": "This detection rule automatically analyzes the billing data generated by your application, and can warn you about an unusual increase in your application's billing costs",
+                    "HelpUrl": "https://github.com/Microsoft/ApplicationInsights-Home/tree/master/SmartDetection/billing-data-volume-daily-spike.md",
+                    "IsHidden": false,
+                    "IsEnabledByDefault": true,
+                    "IsInPreview": true,
+                    "SupportsEmailNotifications": false
+                },
+                "enabled": true,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/extension_canaryextension')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "extension_canaryextension",
+                    "DisplayName": "Canary extension",
+                    "Description": "Canary extension",
+                    "HelpUrl": "https://github.com/Microsoft/ApplicationInsights-Home/blob/master/SmartDetection/",
+                    "IsHidden": true,
+                    "IsEnabledByDefault": true,
+                    "IsInPreview": true,
+                    "SupportsEmailNotifications": false
+                },
+                "enabled": true,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/extension_exceptionchangeextension')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "extension_exceptionchangeextension",
+                    "DisplayName": "Abnormal rise in exception volume (preview)",
+                    "Description": "This detection rule automatically analyzes the exceptions thrown in your application, and can warn you about unusual patterns in your exception telemetry.",
+                    "HelpUrl": "https://github.com/Microsoft/ApplicationInsights-Home/blob/master/SmartDetection/abnormal-rise-in-exception-volume.md",
+                    "IsHidden": false,
+                    "IsEnabledByDefault": true,
+                    "IsInPreview": true,
+                    "SupportsEmailNotifications": false
+                },
+                "enabled": true,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/extension_memoryleakextension')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "extension_memoryleakextension",
+                    "DisplayName": "Potential memory leak detected (preview)",
+                    "Description": "This detection rule automatically analyzes the memory consumption of each process in your application, and can warn you about potential memory leaks or increased memory consumption.",
+                    "HelpUrl": "https://github.com/Microsoft/ApplicationInsights-Home/tree/master/SmartDetection/memory-leak.md",
+                    "IsHidden": false,
+                    "IsEnabledByDefault": true,
+                    "IsInPreview": true,
+                    "SupportsEmailNotifications": false
+                },
+                "enabled": true,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/extension_securityextensionspackage')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "extension_securityextensionspackage",
+                    "DisplayName": "Potential security issue detected (preview)",
+                    "Description": "This detection rule automatically analyzes the telemetry generated by your application and detects potential security issues.",
+                    "HelpUrl": "https://github.com/Microsoft/ApplicationInsights-Home/blob/master/SmartDetection/application-security-detection-pack.md",
+                    "IsHidden": false,
+                    "IsEnabledByDefault": true,
+                    "IsInPreview": true,
+                    "SupportsEmailNotifications": false
+                },
+                "enabled": true,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/extension_traceseveritydetector')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "extension_traceseveritydetector",
+                    "DisplayName": "Degradation in trace severity ratio (preview)",
+                    "Description": "This detection rule automatically analyzes the trace logs emitted from your application, and can warn you about unusual patterns in the severity of your trace telemetry.",
+                    "HelpUrl": "https://github.com/Microsoft/ApplicationInsights-Home/blob/master/SmartDetection/degradation-in-trace-severity-ratio.md",
+                    "IsHidden": false,
+                    "IsEnabledByDefault": true,
+                    "IsInPreview": true,
+                    "SupportsEmailNotifications": false
+                },
+                "enabled": true,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/longdependencyduration')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "longdependencyduration",
+                    "DisplayName": "Long dependency duration",
+                    "Description": "Smart Detection rules notify you of performance anomaly issues.",
+                    "HelpUrl": "https://docs.microsoft.com/en-us/azure/application-insights/app-insights-proactive-performance-diagnostics",
+                    "IsHidden": false,
+                    "IsEnabledByDefault": true,
+                    "IsInPreview": false,
+                    "SupportsEmailNotifications": true
+                },
+                "enabled": true,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/migrationToAlertRulesCompleted')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "migrationToAlertRulesCompleted",
+                    "DisplayName": "Migration To Alert Rules Completed",
+                    "Description": "A configuration that controls the migration state of Smart Detection to Smart Alerts",
+                    "HelpUrl": "https://docs.microsoft.com/en-us/azure/application-insights/app-insights-proactive-performance-diagnostics",
+                    "IsHidden": true,
+                    "IsEnabledByDefault": false,
+                    "IsInPreview": true,
+                    "SupportsEmailNotifications": false
+                },
+                "enabled": false,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/slowpageloadtime')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "slowpageloadtime",
+                    "DisplayName": "Slow page load time",
+                    "Description": "Smart Detection rules notify you of performance anomaly issues.",
+                    "HelpUrl": "https://docs.microsoft.com/en-us/azure/application-insights/app-insights-proactive-performance-diagnostics",
+                    "IsHidden": false,
+                    "IsEnabledByDefault": true,
+                    "IsInPreview": false,
+                    "SupportsEmailNotifications": true
+                },
+                "enabled": true,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "microsoft.insights/components/ProactiveDetectionConfigs",
+            "apiVersion": "2018-05-01-preview",
+            "name": "[concat(parameters('components_bicep_webapp_insights_name'), '/slowserverresponsetime')]",
+            "location": "eastus2",
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_bicep_webapp_insights_name'))]"
+            ],
+            "properties": {
+                "ruleDefinitions": {
+                    "Name": "slowserverresponsetime",
+                    "DisplayName": "Slow server response time",
+                    "Description": "Smart Detection rules notify you of performance anomaly issues.",
+                    "HelpUrl": "https://docs.microsoft.com/en-us/azure/application-insights/app-insights-proactive-performance-diagnostics",
+                    "IsHidden": false,
+                    "IsEnabledByDefault": true,
+                    "IsInPreview": false,
+                    "SupportsEmailNotifications": true
+                },
+                "enabled": true,
+                "sendEmailsToSubscriptionOwners": true,
+                "customEmails": []
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2022-03-01",
+            "name": "[parameters('sites_bicep_webapp_01_name')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_asp_bicep_webapps_name'))]"
+            ],
+            "tags": {
+                "Project": "Bicep-Part1",
+                "Environment": "Test"
+            },
+            "kind": "app",
+            "properties": {
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_bicep_webapp_01_name'), '.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "hostType": "Standard"
+                    },
+                    {
+                        "name": "[concat(parameters('sites_bicep_webapp_01_name'), '.scm.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "hostType": "Repository"
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_asp_bicep_webapps_name'))]",
+                "reserved": false,
+                "isXenon": false,
+                "hyperV": false,
+                "vnetRouteAllEnabled": false,
+                "vnetImagePullEnabled": false,
+                "vnetContentShareEnabled": false,
+                "siteConfig": {
+                    "numberOfWorkers": 1,
+                    "acrUseManagedIdentityCreds": false,
+                    "alwaysOn": false,
+                    "http20Enabled": false,
+                    "functionAppScaleLimit": 0,
+                    "minimumElasticInstanceCount": 0
+                },
+                "scmSiteAlsoStopped": false,
+                "clientAffinityEnabled": true,
+                "clientCertEnabled": false,
+                "clientCertMode": "Required",
+                "hostNamesDisabled": false,
+                "customDomainVerificationId": "BFECB854E1F97DA6280FC50D0B16B145F8B8FFCD8582DDF1D8DF564264C8CF8B",
+                "containerSize": 0,
+                "dailyMemoryTimeQuota": 0,
+                "httpsOnly": true,
+                "redundancyMode": "None",
+                "publicNetworkAccess": "Enabled",
+                "storageAccountRequired": false,
+                "keyVaultReferenceIdentity": "SystemAssigned"
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+            "apiVersion": "2022-03-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/ftp')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ],
+            "tags": {
+                "Project": "Bicep-Part1",
+                "Environment": "Test"
+            },
+            "properties": {
+                "allow": true
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+            "apiVersion": "2022-03-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/scm')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ],
+            "tags": {
+                "Project": "Bicep-Part1",
+                "Environment": "Test"
+            },
+            "properties": {
+                "allow": true
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/config",
+            "apiVersion": "2022-03-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/web')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ],
+            "tags": {
+                "Project": "Bicep-Part1",
+                "Environment": "Test"
+            },
+            "properties": {
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php",
+                    "hostingstart.html"
+                ],
+                "netFrameworkVersion": "v6.0",
+                "requestTracingEnabled": false,
+                "remoteDebuggingEnabled": false,
+                "httpLoggingEnabled": false,
+                "acrUseManagedIdentityCreds": false,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": false,
+                "publishingUsername": "$bicep-webapp-01",
+                "scmType": "None",
+                "use32BitWorkerProcess": true,
+                "webSocketsEnabled": false,
+                "alwaysOn": false,
+                "managedPipelineMode": "Integrated",
+                "virtualApplications": [
+                    {
+                        "virtualPath": "/",
+                        "physicalPath": "site\\wwwroot",
+                        "preloadEnabled": false
+                    }
+                ],
+                "loadBalancing": "LeastRequests",
+                "experiments": {
+                    "rampUpRules": []
+                },
+                "autoHealEnabled": false,
+                "vnetRouteAllEnabled": false,
+                "vnetPrivatePortsCount": 0,
+                "publicNetworkAccess": "Enabled",
+                "localMySqlEnabled": false,
+                "ipSecurityRestrictions": [
+                    {
+                        "ipAddress": "Any",
+                        "action": "Allow",
+                        "priority": 2147483647,
+                        "name": "Allow all",
+                        "description": "Allow all access"
+                    }
+                ],
+                "scmIpSecurityRestrictions": [
+                    {
+                        "ipAddress": "Any",
+                        "action": "Allow",
+                        "priority": 2147483647,
+                        "name": "Allow all",
+                        "description": "Allow all access"
+                    }
+                ],
+                "scmIpSecurityRestrictionsUseMain": false,
+                "http20Enabled": false,
+                "minTlsVersion": "1.2",
+                "scmMinTlsVersion": "1.2",
+                "ftpsState": "FtpsOnly",
+                "preWarmedInstanceCount": 0,
+                "functionsRuntimeScaleMonitoringEnabled": false,
+                "minimumElasticInstanceCount": 0,
+                "azureStorageAccounts": {}
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "apiVersion": "2022-03-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/', parameters('sites_bicep_webapp_01_name'), '.azurewebsites.net')]",
+            "location": "East US 2",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ],
+            "properties": {
+                "siteName": "bicep-webapp-01",
+                "hostNameType": "Verified"
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T03_48_43_9206783')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T04_48_44_0430496')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T05_48_44_1248228')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T06_48_44_2227376')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T07_48_44_3026746')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T08_48_44_4203480')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T09_48_44_4820546')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T10_48_44_6116585')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T11_48_44_6614213')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T12_48_44_7679274')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T13_48_44_8798374')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T14_48_44_9523072')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T15_48_45_0594367')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T16_48_45_1473215')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T17_48_45_2443008')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T18_48_45_3354252')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T19_48_45_4343741')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T20_48_45_5213748')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T21_48_45_6167943')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T22_48_45_7137426')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-23T23_48_45_8172608')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T00_48_45_9081544')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T01_48_45_9964313')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T02_48_46_1180104')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T03_48_46_1938206')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T04_48_46_2930416')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T05_48_46_3583258')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T06_48_46_4394670')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T07_48_46_5379429')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T08_48_46_6416120')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T09_48_46_7018884')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T10_48_46_8009512')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T11_48_46_8937339')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T12_48_46_9783972')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T13_48_47_0690322')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T14_48_47_1587175')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T15_48_47_2426037')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T16_48_47_3721181')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T17_48_47_4222542')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T18_48_47_5559547')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T19_48_47_6142739')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T20_48_47_7232674')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T21_48_47_8069062')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T22_48_47_9236633')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-24T23_48_47_9822659')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T00_48_48_0776621')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T01_48_48_1694161')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T02_48_48_2415875')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T03_48_48_3209138')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T04_48_48_4102889')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T05_48_48_5105054')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T06_48_48_5891170')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T07_48_48_6808150')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T08_48_48_7984857')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T09_48_48_8638496')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T10_48_48_9485323')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T11_48_49_0346087')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T12_48_49_1111925')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T13_48_49_1970185')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T14_48_49_2800271')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T15_48_49_3612444')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T16_48_49_4533202')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T17_48_49_5608839')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T18_48_49_6292878')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T19_48_50_2059268')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T20_48_49_7994966')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T21_48_49_8982217')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T22_48_49_9730773')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-25T23_48_50_0516789')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T00_48_50_1387651')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T01_48_50_2300331')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T02_48_50_3077569')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T03_48_50_3948154')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T04_48_50_5145998')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T05_48_50_5715621')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T06_48_50_6544568')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T07_48_50_7576056')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T08_48_50_8229291')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T09_48_50_9505321')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T10_48_51_0146824')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T11_48_51_1098058')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T12_48_51_2029874')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T13_48_51_2758758')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T14_48_51_3621623')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T15_48_51_4415699')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T16_48_51_5180552')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/snapshots",
+            "apiVersion": "2015-08-01",
+            "name": "[concat(parameters('sites_bicep_webapp_01_name'), '/2023-02-26T17_48_51_6335499')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_bicep_webapp_01_name'))]"
+            ]
+        }
+    ]
+}
