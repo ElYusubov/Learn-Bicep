@@ -14,7 +14,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion   // follow a good practice
   tags:{
-    Project: 'Azure Back to School 2021'
+    Project: 'Azure Demo'
     Environment: 'Dev'
   }
 }
@@ -23,7 +23,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
 module storageModule '../modules/storage-param.bicep' = {
   scope: resourceGroup(myResourceGroup.name)
   name: 'storageDeployment-${uniqueString(myResourceGroup.id)}' // deployment name
-  params: {
+  params:{
     geoRedundancy: false
     azureRegion: azureRegion
   }
