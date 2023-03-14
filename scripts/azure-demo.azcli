@@ -2,14 +2,38 @@
 az login --use-device-code
 az account show --query name
 
-# List all RG names
-az group list -o table
+# Deploy Policy Definitions to subscription
+#1 audit-resource-tag
+az deployment sub create --location eastus2 --template-file .\tagging-policies\audit-resource-tag.bicep
 
-# Decompile
-az bicep decompile --file .\Pilot-project\decompile\template-clean-v2.json 
+#2 audit-resource-tag-and-value-format
+az deployment sub create --location eastus2 --template-file .\tagging-policies\audit-resource-tag-and-value-format.bicep
 
-az group create -n 'bicep-part1-pilot-web-demo' -l 'eastus2'
+#3 audit-resource-tag-and-its-value-match
+az deployment sub create --location eastus2 --template-file .\tagging-policies\audit-resource-tag-and-its-value-match.bicep
 
-# Deploy parent-child-scenarios.bicep
-az group create -n 'v3-kineteco-arm-eastus2' -l 'eastus2'
-az deployment group create -g 'v3-kineteco-arm-eastus2' -f .\samples\14-deploy-child-parent-scenarios.bicep -c
+#4 audit-resource-group-tag
+az deployment sub create --location eastus2 --template-file .\tagging-policies\audit-resourcegroup-tag.bicep
+
+#5 audit-resourcegroup-tag-and-its-value-format
+az deployment sub create --location eastus2 --template-file .\tagging-policies\audit-resourcegroup-tag-and-its-value-format.bicep
+
+#6 audit-resourcegroup-tag-and-its-value-match
+az deployment sub create --location eastus2 --template-file .\tagging-policies\audit-resourcegroup-tag-and-its-value-match.bicep
+
+# Pre-flight checks before deployment into SUBSCRIPTION
+az deployment sub what-if --location eastus2 --template-file .\samples\19-deploy-tagging-policy-sub.bicep
+
+az deployment sub create --location eastus2 --template-file .\samples\19-deploy-tagging-policy-sub.bicep
+
+# # List all RG names
+# az group list -o table
+
+# # Decompile
+# az bicep decompile --file .\Pilot-project\decompile\template-clean-v2.json 
+
+# az group create -n 'bicep-part1-pilot-web-demo' -l 'eastus2'
+
+# # Deploy parent-child-scenarios.bicep
+# az group create -n 'v3-kineteco-arm-eastus2' -l 'eastus2'
+# az deployment group create -g 'v3-kineteco-arm-eastus2' -f .\samples\14-deploy-child-parent-scenarios.bicep -c
