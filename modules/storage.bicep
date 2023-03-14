@@ -1,6 +1,6 @@
-// storage.bicep
+@maxLength(6)
+param prefix string = 'azs23'
 
-param prefix string = 'bae0201'
 param storageName string = 'stg${prefix}'
 param location string = resourceGroup().location
 
@@ -20,8 +20,8 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
 }
 
-resource tstStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: 'tst01${prefix}'
+resource secondStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
+  name: 'secstg01${prefix}'
   location: location
   kind: 'StorageV2'
   sku: {
