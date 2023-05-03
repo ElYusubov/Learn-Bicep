@@ -12,7 +12,7 @@ param azureRegion string = 'eastus2'
 @description('Resource group defintion')
 resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
-  location: azureRegion   // follow a good practice
+  location: azureRegion
   tags:{
     Project: 'Azure User Group Demo'
     Environment: 'Demo'   
