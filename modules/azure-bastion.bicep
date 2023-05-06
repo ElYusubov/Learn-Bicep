@@ -45,7 +45,8 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2020-06-01' = {
 }
 
 resource subNet 'Microsoft.Network/virtualNetworks/subnets@2020-06-01' = {
-  name: '${virtualNetwork.name}/AzureBastionSubnet'
+  parent: virtualNetwork
+  name: 'AzureBastionSubnet'
   properties: {
     addressPrefix: bastionSubnetIpPrefix
   }
