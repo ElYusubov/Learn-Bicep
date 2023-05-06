@@ -76,7 +76,7 @@ resource sg 'Microsoft.Network/networkSecurityGroups@2020-06-01' = {
     securityRules: [
       {
         name: 'default-allow-3389'
-        'properties': {
+        properties: {
           priority: 1000
           access: 'Allow'
           direction: 'Inbound'

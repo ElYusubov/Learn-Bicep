@@ -17,7 +17,8 @@ resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2021-11-15-previ
 }
 
 resource sqlRoleDefinition 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions@2021-11-15-preview' = {
-  name: '${cosmosDbAccountName}/${roleDefinitionId}'
+  parent: cosmosDbAccount
+  name: roleDefinitionId
   properties: {
     roleName: roleDefinitionName
     type: 'CustomRole'
@@ -30,13 +31,11 @@ resource sqlRoleDefinition 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinit
       }
     ]
   }
-  dependsOn: [
-    cosmosDbAccount
-  ]
 }
 
 resource sqlRoleAssignment 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments@2021-11-15-preview' = {
-  name: '${cosmosDbAccountName}/${roleAssignmentId}'
+  parent: cosmosDbAccount
+  name: roleAssignmentId
   properties: {
     roleDefinitionId: sqlRoleDefinition.id
     principalId: functionAppPrincipalId
