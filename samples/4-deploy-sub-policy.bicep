@@ -4,18 +4,10 @@
 targetScope = 'subscription'
 
 @description('Defined list of allowed locations.')
-param listOfAllowedLocations array = [
-  'eastus'
-  'eastus2'
-  'westus'
-  'westus2'
-]
+param listOfAllowedLocations array = ['eastus', 'eastus2', 'westus', 'westus2']
 
 @description('Policy action options.')
-@allowed([
-  'Audit'
-  'Deny'
-])
+@allowed(['Audit', 'Deny'])
 param policyEffect string
 
 @description('A Policy definition for the location.')
