@@ -38,5 +38,22 @@
           "modulePath": "bicep/modules"
         }
       }
+    },
+    "experimentalFeaturesEnabled": {
+      "imports": true,
+      "userDefinedTypes": true,
+      "prettyPrinting": true,
+      "paramsFiles":true
+    },
+    "formatting": {
+      "width": 120,
+      "indentation": "space",
+      "indentationSize": 2,
+      "insertSpaces": true,
+      "newlineKind": "LF",
+      "ensureNewlineAtEndOfFile": true,
+      "trimTrailingWhitespace": true,
+      "trimFinalNewlines": true,
+      "insertFinalNewline": true
     }
   }
