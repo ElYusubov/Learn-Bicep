@@ -15,7 +15,7 @@
 // To fetch Private registry modules before build
 // bicep restore --file module.bicep
 
-param acrName string = 'latamprivateregistry5'
+param acrName string = 'latamprivateregistry'
 
 resource containerRegistry 'Microsoft.ContainerRegistry/registries@2021-06-01-preview' = {
   name: acrName
