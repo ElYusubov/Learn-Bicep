@@ -7,11 +7,7 @@ param storageAccountName string = 'ey22${uniqueString(resourceGroup().id)}'
 param deploymentRegion string = resourceGroup().location
 
 @description('The list of container names.')
-var containerNames = [
- 'logs'
- 'inputs'
- 'outputs'
-]
+var containerNames = ['logs', 'inputs', 'outputs']
 
 @description('A parent storage account resource.')
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
@@ -21,7 +17,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   sku: {
     name: 'Standard_GRS'
   }
-  properties:{
+  properties: {
     accessTier: 'Hot'
   }
 }
@@ -44,5 +40,5 @@ resource myStorageBlobServices 'Microsoft.Storage/storageAccounts/blobServices@2
 
 @description('Option 3: Automation and looping with enumeration :) ')
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = [ for containerName in containerNames: {
-  name: '${storageAccount.name}/default/${containerName}'
-}]
+    name: '${storageAccount.name}/default/${containerName}'
+  }]
