@@ -1,4 +1,4 @@
-// main.bicep - test the pipeline
+// main.bicep - new test
 // Requires registration of Microsoft.Web, Insights and AlertsManagment
 
 @description('The Azure region (location) for deployment.')
