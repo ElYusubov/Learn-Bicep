@@ -44,9 +44,10 @@
       "userDefinedTypes": true,
       "prettyPrinting": true,
       "paramsFiles":true
-    },
+    }
+    ,
     "formatting": {
-      "width": 120,
+      "width": 80,
       "indentation": "space",
       "indentationSize": 2,
       "insertSpaces": true,
