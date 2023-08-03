@@ -3,7 +3,7 @@
 // az acr create --name "latamprivateregistry" --sku Basic -g 'latam-private-registry-test-eastus2'
 
 // Deploying the acr code
-// az deployment group create -g 'latam-private-registry-test-eastus2' -f .\acr-project\acr.bicep -c 
+// az deployment group create -g 'latam-private-registry-test-eastus2' -f .\private-project\acr.bicep -c 
 
 // Publish the appservice-demo.bicep
 // az bicep publish --file appservice-demo.bicep --target br:latamprivateregistry5.azurecr.io/bicep/modules/acr:v1.0.0
