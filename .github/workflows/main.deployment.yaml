@@ -45,6 +45,7 @@ jobs:
       name: Sign in to Azure
       with:
         creds: ${{ secrets.MCT_SUB_JSON }}
+        enable-AzPSSession: true
     - uses: azure/arm-deploy@v1
       name: Deploy website
       with:

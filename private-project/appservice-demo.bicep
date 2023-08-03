@@ -1,13 +1,13 @@
 // appservice-demo.bicep
 
 @description('Provide a Azure deployment region/location for the registry.')
-param location string  // resourceGroup().location
+param location string = resourceGroup().location
 
 @description('App service name.')
 param appServiceAppName string = 'myapp${uniqueString(resourceGroup().id)}'
 
 @description('App service plan name.')
-param appServicePlanName string = 'myapp-plan'  // ${uniqueString(resourceGroup().id)}
+param appServicePlanName string = 'asp-plan${uniqueString(resourceGroup().id)}'
 
 resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   name: appServicePlanName
