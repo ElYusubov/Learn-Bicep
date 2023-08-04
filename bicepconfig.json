@@ -11,7 +11,7 @@
             "level":"warning"
           },
           "no-unused-vars": {
-            "level":"warning"
+            "level": "info"
           },
           "no-unused-existing-resources":{
             "level": "warning"
