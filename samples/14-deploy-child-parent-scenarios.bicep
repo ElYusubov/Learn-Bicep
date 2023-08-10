@@ -39,7 +39,8 @@ resource myStorageBlobServices 'Microsoft.Storage/storageAccounts/blobServices@2
 }
 
 @description('Option 3: Automation and looping with enumeration :) ')
-resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = [ for containerName in containerNames: {
+resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = [
+  for containerName in containerNames: {
     name: '${storageAccount.name}/default/${containerName}'
   }
 ]

@@ -4,10 +4,10 @@
 targetScope = 'subscription'
 
 @description('The name of the Resource Group.')
-param resourceGroupName string = 'rg-BackToFuture'
+param resourceGroupName string = 'rg-LatamDemo'
 
 @description('The Azure region into which the resources should be deployed.')
-param azureRegion string = 'eastus2'
+param azureRegion string = 'westus2'
 
 // Warning for the build as bicepconfig warns on a unused param & unused variable declarations below
 param deleteUnusedParam string
