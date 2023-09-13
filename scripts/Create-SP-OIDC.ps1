@@ -54,3 +54,10 @@ $appId | foreach-object {
         #    --assignee "$_" `
         #    --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageName"
 }
+
+
+#### Add New repo secerets:
+
+#AZURE_CLIENT_ID: xxxxxxxxxxxxxxxxxxxx
+#AZURE_TENANT_ID: yyyyyyyyyyyyyyyyyyyyyyy
+#AZURE_SUBSCRIPTION_ID: zzzzzzzzzzzzzzzzzzzzzzz
