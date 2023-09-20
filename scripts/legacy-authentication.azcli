@@ -1,5 +1,4 @@
 # Log into Azure
-# https://dev.to/pwd9000/bk-1iij
 az login
 
 # Show current subscription (use 'Az account set' to change subscription)
@@ -16,9 +15,7 @@ az ad sp create-for-rbac --name $appName `
     --scopes /subscriptions/$subscriptionId `
     --sdk-auth
 
-
-
-# TEMP
+# Expected output
 # {
 #   "clientId": "00000",
 #   "clientSecret": "lYO8Q~VvCVuVUV6hMb5z_werewr324324234.",       
@@ -33,6 +30,7 @@ az ad sp create-for-rbac --name $appName `
 # }
 
 
+### Your "secrets.YOUR_CRED_JSON" entry template
 # {
 #    "clientId": "xxx",
 #    "clientSecret": "yyy",       
