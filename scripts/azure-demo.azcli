@@ -1,6 +1,7 @@
 # Login to Azure
 az login --use-device-code
 az account show --query name
+az group list -o table
 
 # Deploy Policy Definitions to subscription
 #1 audit-resource-tag
