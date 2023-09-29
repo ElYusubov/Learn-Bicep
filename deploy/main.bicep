@@ -102,13 +102,13 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
 }
 
 // Using ACR
-module acrPrivateWebApp 'br/LatamDemo:webapp:v2.0.0'= {
-  name: 'acrWebApp-deploy-v2'
-  params: {
-    location: 'westus'
-    appServiceAppName: 'acrwebapp-new-westus'
-    appServicePlanName: 'asp-acrwebapp-westus'
-  }
-}
+// module acrPrivateWebApp 'br/LatamDemo:webapp:v2.0.0'= {
+//   name: 'acrWebApp-deploy-v2'
+//   params: {
+//     location: 'westus'
+//     appServiceAppName: 'acrwebapp-new-westus'
+//     appServicePlanName: 'asp-acrwebapp-westus'
+//   }
+// }
 
 output appServiceAppHostName string = appServiceApp.properties.defaultHostName
