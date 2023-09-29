@@ -2,10 +2,8 @@ name: deploy-main-site
 concurrency: test-company
 
 on: 
-  push:
-    branches: 
-      - main
-      - 'release/**'
+  pull_request:
+    branches: [main]
 
 env:
   AZURE_RESOURCEGROUP_NAME: BicepTest-RG
