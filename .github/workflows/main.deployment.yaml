@@ -10,6 +10,7 @@ on:
 env:
   AZURE_RESOURCEGROUP_NAME: BicepTest-RG
   ENVIRONMENT_TYPE: Test
+  TEST_LOCATION: deploy/webapp.tests.ps1
 
 permissions:
   id-token: write
@@ -45,6 +46,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [lint, validate]
+    outputs:
+      appServiceAppHostName: ${{ steps.deploy.outputs.appServiceAppHostName }}
     steps:
     - uses: actions/checkout@v3
     - uses: azure/login@v1
@@ -62,3 +65,19 @@ jobs:
         resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
         template: ./deploy/main.bicep
         parameters: environmentType=${{ env.ENVIRONMENT_TYPE }}
+
+
+  smoke-test:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+    - uses: actions/checkout@v3
+    - run: |
+        $container = New-PesterContainer `
+          -Path '${{ env.TEST_LOCATION }}' `
+          -Data @{ HostNameUrl = '${{needs.deploy.outputs.appServiceAppHostName}}' }
+        Invoke-Pester `
+          -Container $container `
+          -CI
+      name: Run smoke tests
+      shell: pwsh
