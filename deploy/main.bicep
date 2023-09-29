@@ -63,7 +63,7 @@ resource appServiceApp 'Microsoft.Web/sites@2021-01-15' = {
   location: location
   properties: {
     serverFarmId: appServicePlan.id
-    httpsOnly: false
+    httpsOnly: true
     siteConfig: {
       appSettings: [
         {
@@ -100,5 +100,15 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
     name: 'Standard_LRS'
   }
 }
+
+// Using ACR
+// module acrPrivateWebApp 'br/LatamDemo:webapp:v2.0.0'= {
+//   name: 'acrWebApp-deploy-v2'
+//   params: {
+//     location: 'westus'
+//     appServiceAppName: 'acrwebapp-new-westus'
+//     appServicePlanName: 'asp-acrwebapp-westus'
+//   }
+// }
 
 output appServiceAppHostName string = appServiceApp.properties.defaultHostName
