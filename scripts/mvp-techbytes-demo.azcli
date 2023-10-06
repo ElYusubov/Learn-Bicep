@@ -1,0 +1,19 @@
+# Login to Azure
+az login --use-device-code
+
+# Check your subscription
+az account show --query name
+az group list -o table
+
+# Demo-3: Starting with Azure Bicep param
+az group create -l eastus -g 'rg-mvp-techbytes-demo'
+az deployment group create -g 'rg-mvp-techbytes-demo' --template-file .\param-files\main.bicep --parameters .\param-files\main.dev.bicepparam -c
+
+# Demo-4: using more advanced parameter declaration, validation
+az deployment group create -g 'rg-mvp-techbytes-demo' --template-file .\param-files\webapp-service-w-param-hardening.bicep --parameters .\param-files\webapp-service-w-param-hardening.dev.bicepparam -c
+
+# Delete the RG by name
+az group delete -n mvp-techbutes-app-demo-1007  ## mvp-techbutes-storage-demo-1007
+
+# Delete the Lock with same name
+az lock delete --name DontDelete --resource-group mvp-techbutes-storage-demo-1007 --resource devxqgkmve534j6i --resource-type Microsoft.Storage/storageAccounts

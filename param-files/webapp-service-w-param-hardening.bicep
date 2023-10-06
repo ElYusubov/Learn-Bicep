@@ -1,4 +1,4 @@
-// webapp-service-w-param-hardening.bicep final clean
+// webapp-service-w-param-hardening.bicep
 
 @description('Azure region to deploy all resources')
 @allowed([
@@ -6,6 +6,7 @@
   'eastus2'
   'westus'
   'westus2'
+  'westus3'
 ])
 param location string
 

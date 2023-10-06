@@ -1,7 +1,7 @@
 // minimum-storage.bicep with ASP
 
 param region string = resourceGroup().location
-param notHelpful string = 'new'
+param notHelpful string = 'new'   // Fails due to Linter rule
 
 resource storageaccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   name: 'nextstgba2sc25'
@@ -12,53 +12,50 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   }
   tags: {
     Environment: 'Demo'
-    Project: 'Azure December Joy 2022'
+    Project: 'MVP TechBytes 2023'
   }
 }
 
-// insert Bicep Resource Id for App Service plan
-@description('Generated from /subscriptions/xxxx')
-resource aspbicepwebapps 'Microsoft.Web/serverfarms@2022-03-01' = {
-  name: 'asp-bicep-webapps-26'
+// example of insert resourse
+
+@description('Generated from /subscriptions/xxxx/resourceGroups/BicepTest-RG/providers/Microsoft.Web/serverFarms/play-website')
+resource playwebsite 'Microsoft.Web/serverfarms@2022-09-01' = {
+  name: 'play-website'
   kind: 'app'
-  location: region
-  tags: {
-    Project: 'Bicep-Part1'
-    Environment: 'Test'
-  }
+  location: 'East US 2'
   properties: {
-    serverFarmId: 7442
-    name: 'asp-bicep-webapps-26'
+    serverFarmId: 7787
+    name: 'play-website'
     workerSize: 'Default'
     workerSizeId: 0
     currentWorkerSize: 'Default'
     currentWorkerSizeId: 0
-    currentNumberOfWorkers: 1
-    webSpace: 'bicep-part1-webapp-eastus2-EastUS2webspace'
+    currentNumberOfWorkers: 0
+    webSpace: 'BicepTest-RG-EastUS2webspace'
     planName: 'VirtualDedicatedPlan'
-    computeMode: 'Dedicated'
+    computeMode: 'Shared'
+    siteMode: 'Limited'
     perSiteScaling: false
     elasticScaleEnabled: false
-    maximumElasticWorkerCount: 1
+    maximumElasticWorkerCount: 0
     isSpot: false
-    tags: {
-      Project: 'Bicep-Part1'
-      Environment: 'Test'
-    }
     kind: 'app'
     reserved: false
     isXenon: false
     hyperV: false
-    mdmId: 'waws-prod-bn1-185_7442'
+    mdmId: 'waws-prod-bn1-215_7787'
     targetWorkerCount: 0
     targetWorkerSizeId: 0
     zoneRedundant: false
+    vnetConnectionsUsed: 0
+    vnetConnectionsMax: 2
+    createdTime: '2023-09-29T14:07:51.99'
   }
   sku: {
-    name: 'B1'
-    tier: 'Basic'
-    size: 'B1'
-    family: 'B'
-    capacity: 1
+    name: 'F1'
+    tier: 'Free'
+    size: 'F1'
+    family: 'F'
+    capacity: 0
   }
 }
