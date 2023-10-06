@@ -23,7 +23,7 @@ az acr show --resource-group mydemo15 --name azwelshug0315.azurecr.io --query lo
 az acr repository list --name latamprivateregistry.azurecr.io --output table
 
 # Publish modules/storage-param.bicep
-az bicep publish --file .\modules\storage-param.bicep --target br:latamprivateregistry.azurecr.io/bicep/modules/storage:v1.0.0
+az bicep publish --file .\modules\storage-param.bicep --target br:latamprivateregistry.azurecr.io/bicep/modules/storage:v1.1.0
 # Artifact reference latamprivateregistry.azurecr.io/bicep/modules/storage:v1.0.0
 
 

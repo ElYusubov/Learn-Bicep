@@ -33,7 +33,7 @@
     },
     "moduleAliases": {
       "br": {
-        "LatamDemo": {
+        "PrivateDemo": {
           "registry": "latamprivateregistry.azurecr.io",
           "modulePath": "bicep/modules"
         }
