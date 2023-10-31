@@ -4,6 +4,8 @@ concurrency: test-company
 on: 
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
 
 env:
   AZURE_RESOURCEGROUP_NAME: BicepTest-RG
