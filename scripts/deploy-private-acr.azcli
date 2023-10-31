@@ -1,10 +1,10 @@
+# Script clean-up and test
 # Login to Azure
 az login --use-device-code
 az account show --query name
 
 # List all RG names
 az group list -o table
-
 
 # Deploy 15-deploy-private =-repo.bicep 
 az group create --name mydemo15 --location eastus
@@ -17,7 +17,6 @@ az acr list --query [].name -o table
 # Get login server name
 az acr show --resource-group mydemo15 --name azwelshug0315.azurecr.io --query loginServer
 # Sample response: azwelshug0315.azurecr.io
-
 
 
 az acr repository list --name latamprivateregistry.azurecr.io --output table
