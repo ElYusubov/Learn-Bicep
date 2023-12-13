@@ -1,3 +1,4 @@
+// private-modules.bicep
 
 module privateWebApp 'br/PrivateDemo:webapp:v2.0.0'= {
   name: 'privateWebApp-Deploy1'
