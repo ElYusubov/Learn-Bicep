@@ -1,5 +1,8 @@
 // pilot-webapp-environment
-param location string = 'eastus2'
+param location string = resourceGroup().location
+
+// param myDemoOrganization string = 'Packt Publishing'
+// var setValue = myDemoOrganization
 
 resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   name: 'kinetEco35-appplan'
@@ -13,6 +16,7 @@ resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
     Environment: 'Test'
   }
 }
+
 
 resource appServiceApp 'Microsoft.Web/sites@2020-06-01' = {
   name: 'kinetEco35-webapp'
