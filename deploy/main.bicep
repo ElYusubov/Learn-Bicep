@@ -1,7 +1,7 @@
 // main.bicep - test run the pipeline
 // Requires registration of Microsoft.Web, Insights and AlertsManagment
 
-@description('The Azure region (location) for deployment.')
+@description('The Azure region/location for deployment.')
 param location string = resourceGroup().location
 
 @description('The allowed environment types are: Dev, Test, and Prod.')
