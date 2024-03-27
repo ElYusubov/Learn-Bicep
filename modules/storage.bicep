@@ -1,5 +1,5 @@
 @maxLength(6)
-param prefix string = 'azs23'
+param prefix string = 'cll24'
 
 param storageName string = 'stg${prefix}'
 param location string = resourceGroup().location

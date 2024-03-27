@@ -29,3 +29,6 @@ resource appServiceApp 'Microsoft.Web/sites@2020-06-01' = {
 
 @description('Provides a deployed apps host name.')
 output webAppHostName string = appServiceApp.properties.defaultHostName
+
+// insert resource - elyusubov Application Insights
+// /subscriptions/3xxx8fb/resourceGroups/rg-blog/providers/microsoft.insights/components/elyusubov

@@ -8,7 +8,7 @@
             "level":"warning"
           },
           "no-unused-params": {
-            "level":"error"
+            "level":"warning"
           },
           "no-unused-vars": {
             "level": "info"
@@ -27,12 +27,20 @@
           },
           "adminusername-should-not-be-literal":{
             "level": "warning"
-          }
+          },
+          "use-stable-vm-image":{
+            "level":"warning"
+            }
+          
         }
       }
     },
     "moduleAliases": {
       "br": {
+        "public": {
+          "registry": "mcr.microsoft.com",
+          "modulePath": "bicep"
+        },
         "PrivateDemo": {
           "registry": "latamprivateregistry.azurecr.io",
           "modulePath": "bicep/modules"

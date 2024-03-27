@@ -1,6 +1,11 @@
 # Login to Azure
 az login --use-device-code
 az account show --query name
+
+az account set --subscription 'Primary MCT Azure'
+az group list -o table
+
+az group create -n 'cll-bicep-demo' -l 'eastus2'  
 az group list -o table
 
 # Deploy Policy Definitions to subscription
