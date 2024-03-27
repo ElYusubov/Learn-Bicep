@@ -4,7 +4,7 @@
 targetScope = 'subscription'
 
 @description('Resource group name.')
-param resourceGroupName string = 'storage-eastus2-demo'
+param resourceGroupName string = 'cll-storage-eastus2-demo'
 
 @description('Azure region selection.')
 param azureRegion string = 'eastus2' 
@@ -14,7 +14,7 @@ resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion
   tags:{
-    Project: 'Azure User Group Demo'
+    Project: 'Session Demo'
     Environment: 'Demo'   
   }
 }
