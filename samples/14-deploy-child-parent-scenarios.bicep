@@ -1,5 +1,6 @@
 // 14-deploy-child-parent-scenarios.bicep
 
+
 @description('The name of the storage account.')
 param storageAccountName string = 'ey22${uniqueString(resourceGroup().id)}'
 

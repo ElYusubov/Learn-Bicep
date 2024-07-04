@@ -27,13 +27,21 @@
           },
           "adminusername-should-not-be-literal":{
             "level": "warning"
-          }
+          },
+          "use-stable-vm-image":{
+            "level":"warning"
+            }
+          
         }
       }
     },
     "moduleAliases": {
       "br": {
-        "LatamDemo": {
+        "public": {
+          "registry": "mcr.microsoft.com",
+          "modulePath": "bicep"
+        },
+        "PrivateDemo": {
           "registry": "latamprivateregistry.azurecr.io",
           "modulePath": "bicep/modules"
         }

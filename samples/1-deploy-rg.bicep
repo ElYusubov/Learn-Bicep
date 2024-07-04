@@ -10,7 +10,9 @@ param resourceGroupName string = 'rg-LatamDemo'
 param azureRegion string = 'westus2'
 
 // Warning for the build as bicepconfig warns on a unused param & unused variable declarations below
+#disable-next-line
 param deleteUnusedParam string
+
 var deleteMe = 'default'
 
 @description('Created a resource group')

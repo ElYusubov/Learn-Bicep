@@ -5,7 +5,8 @@ targetScope = 'subscription'
 
 @description('Resource Group name for the deployment')
 @minLength(3)
-param resourceGroupName string = 'rg-BackToFuture'
+@maxLength(90)
+param resourceGroupName string = 'rg-BicepDemo'
 
 @description('Azure region to deploy all resources')
 @allowed([
