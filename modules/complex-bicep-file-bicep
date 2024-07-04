@@ -1,0 +1,48 @@
+param location string = resourceGroup().location
+param webAppName string
+param storageAccountName string
+
+resource webApp 'Microsoft.Web/sites@2021-01-01' = {
+    name: webAppName
+    location: location
+    properties: {
+        serverFarmId: appServicePlan.id
+    }
+}
+
+resource appServicePlan 'Microsoft.Web/serverfarms@2021-01-01' = {
+    name: '${webAppName}Plan'
+    location: location
+    sku: {
+        name: 'F1'
+        tier: 'Free'
+    }
+}
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
+    name: storageAccountName
+    location: location
+    sku: {
+        name: 'Standard_LRS'
+    }
+    kind: 'StorageV2'
+}
+
+resource privateEndpoint 'Microsoft.Network/privateEndpoints@2021-02-01' = {
+    name: '${webAppName}PrivateEndpoint'
+    location: location
+    properties: {
+        privateLinkServiceConnections: [
+            {
+                name: '${webAppName}PrivateLinkServiceConnection'
+                properties: {
+                    privateLinkServiceId: storageAccount.id
+                    groupIds: [
+                        'blob'
+                    ]
+                }
+            }
+        ]
+        manualPrivateLinkServiceConnections: []
+    }
+}
