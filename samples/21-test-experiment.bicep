@@ -56,9 +56,42 @@
 // output resourceNameWithEnvironment string = concatenatedName
 
 
-param availableFruits array = ['apple', 'strawberry', 'orange', 'banana', 'pear']
-param desiredfruit string = 'orange'
+// param availableFruits array = ['apple', 'strawberry', 'orange', 'banana', 'pear']
+// param desiredfruit string = 'orange'
 
-var hasDesiredFruit = contains(availableFruits, desiredfruit)
+// var hasDesiredFruit = contains(availableFruits, desiredfruit)
 
-output containsDesiredFruit bool = hasDesiredFruit
+// output containsDesiredFruit bool = hasDesiredFruit
+
+
+//// - Code #10 - Empty Function
+
+param availableFruits array = []
+param desiredfruit string = 'mango'
+
+output arrayEmpty bool = empty(availableFruits)
+output stringEmpty bool = empty(desiredfruit)
+
+
+//// - Code #10 - Firts Function
+
+param storageAccountNames array = [
+  'myStorageAccount3'
+  'myStorageAccount2'
+  'myStorageAccount'
+]
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
+  name: first(storageAccountNames)
+  location: resourceGroup().location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    accessTier: 'Hot'
+  }
+}
+
+//// - Code #11 - Flatten Function
+

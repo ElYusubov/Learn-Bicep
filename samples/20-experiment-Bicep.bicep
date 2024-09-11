@@ -1,40 +1,40 @@
-// @description('String value defined for test deployment')
-// param stringValue string = 'deployment parameter'
+@description('String value defined for test deployment')
+param stringValue string = 'deployment parameter'
 
-// @description('Integere value defined for test deployment')
-// param intValue int = 45
+@description('Integere value defined for test deployment')
+param intValue int = 45
 
-// var concatValues =  '${stringValue}AddToVar'
-// var sumUpIntValues = intValue + 5
+var concatValues =  '${stringValue}AddToVar'
+var sumUpIntValues = intValue + 5
 
 
-// @allowed([
-//   'dev'
-//   'test'
-//   'prod'
-// ])
-// param environmentName string
+@allowed([
+  'dev'
+  'test'
+  'prod'
+])
+param environmentName string
 
-// var environmentSettings = {
-//   dev: {
-//     instanceSize: 'Small'
-//     instanceCount: 1
-//   }
-//   test: {
-//     instanceSize: 'Small'
-//     instanceCount: 2
-//   }
-//   prod: {
-//     instanceSize: 'Large'
-//     instanceCount: 4
-//   }
-// }
+var environmentSettings = {
+  dev: {
+    instanceSize: 'Small'
+    instanceCount: 1
+  }
+  test: {
+    instanceSize: 'Small'
+    instanceCount: 2
+  }
+  prod: {
+    instanceSize: 'Large'
+    instanceCount: 4
+  }
+}
 
-// output instanceSize string = environmentSettings[environmentName].instanceSize
-// output instanceCount int = environmentSettings[environmentName].instanceCount
+output instanceSize string = environmentSettings[environmentName].instanceSize
+output instanceCount int = environmentSettings[environmentName].instanceCount
 
-// output finalConcat string = concatValues
-// output finalSumUp int = sumUpIntValues
+output finalConcat string = concatValues
+output finalSumUp int = sumUpIntValues
 
 
 
