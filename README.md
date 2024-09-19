@@ -1,6 +1,6 @@
 # Learn Bicep 
 
-The "Learn Bicep" is a simple, yet powerful step-by-step learning guide with easy to start samples.
+This repo is a simple, yet powerful step-by-step learning guide with easy to start samples on Azure Bicep.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
 [![SL Scan](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/shiftleft-analysis.yml/badge.svg)](https://github.com/ElYusubov/Learn-Bicep/actions/workflows/shiftleft-analysis.yml)
