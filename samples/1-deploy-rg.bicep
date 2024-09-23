@@ -1,6 +1,6 @@
 // 1-deploy-rg.bicep
-// Deployment scope: subscription
 
+// Deployment scope: subscription
 targetScope = 'subscription'
 
 @description('The name of the Resource Group.')

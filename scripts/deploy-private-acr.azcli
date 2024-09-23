@@ -39,4 +39,6 @@ az deployment group create -g 'cllnov01' -f .\samples\15-deploy-private-repo.bic
 
 # Query the list of exisiting web apps
 az webapp list -o table
+
+# Display an existing web app
 az webapp show -g cllnov01 --name newapp031555 -o table
