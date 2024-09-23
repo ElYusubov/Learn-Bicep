@@ -1,6 +1,6 @@
 // 2-deploy-param-storage.bicep
-// Deployment scope: subscription
 
+// Deployment scope: subscription
 targetScope = 'subscription'
 
 @description('Resource Group name for the deployment')

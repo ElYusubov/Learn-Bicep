@@ -1,6 +1,6 @@
 // 3-deploy-storage-w-Lock.bicep
-// Deployment scope: subscription
 
+// Deployment scope: subscription
 targetScope = 'subscription'
 
 @description('Resource group name.')
