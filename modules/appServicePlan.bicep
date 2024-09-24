@@ -9,6 +9,7 @@ param location string
 @description('The SKU that we will provision this App Service Plan to.')
 param appServicePlanSkuName string
 
+// Define the Azure App Service Plan
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: appServicePlanName
   location: location
@@ -20,4 +21,5 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2021-03-01' = {
   } 
 }
 
+@description('Output the App Service Plan ID')
 output appServicePlanId string = appServicePlan.id

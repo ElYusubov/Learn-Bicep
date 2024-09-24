@@ -11,6 +11,7 @@ param deploymentRegion string = resourceGroup().location
 @description('Provide a tier of your Azure Container Registry.')
 param acrSku string = 'Basic'
 
+// Define the Azure Container Registry
 resource acrResource 'Microsoft.ContainerRegistry/registries@2021-06-01-preview' = {
   name: acrName
   location: deploymentRegion
