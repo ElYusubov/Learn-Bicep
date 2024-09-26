@@ -21,6 +21,7 @@ param bastionHostName string
 ])
 param location string
 
+// Define the Azure Bastion resource
 resource publicIp 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
   name: '${bastionHostName}-pip'
   location: location
@@ -32,6 +33,7 @@ resource publicIp 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
   }
 }
 
+// Define the Azure VNet resource
 resource virtualNetwork 'Microsoft.Network/virtualNetworks@2020-06-01' = {
   name: virtualNetworkName
   location: location
@@ -44,6 +46,7 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2020-06-01' = {
   }
 }
 
+// Define the Azure Bastion Subnet
 resource subNet 'Microsoft.Network/virtualNetworks/subnets@2020-06-01' = {
   parent: virtualNetwork
   name: 'AzureBastionSubnet'
@@ -52,6 +55,7 @@ resource subNet 'Microsoft.Network/virtualNetworks/subnets@2020-06-01' = {
   }
 }
 
+// Define the Azure Bastion Host
 resource bastionHost 'Microsoft.Network/bastionHosts@2020-06-01' = {
   name: bastionHostName
   location: location

@@ -46,7 +46,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   tags: appTags
 }
 
-// Blob Services
+// Storage Account Blob Services
 resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2019-06-01' = {
   parent: storageAccount
 
@@ -62,7 +62,7 @@ resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2019-06-01
   }
 }
 
-// App Insights
+// Application Insights
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
   name: appInsightsName
   location: location
@@ -76,7 +76,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
   tags: appTags
 }
 
-// App Service
+// App Service Plan
 resource appService 'Microsoft.Web/serverFarms@2020-06-01' = {
   name: appServiceName
   location: location

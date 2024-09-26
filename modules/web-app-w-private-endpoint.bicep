@@ -1,10 +1,12 @@
-param location string = resourceGroup().location
+// web-app-w-private-endpoint.bicep
+
+param azureRegion string = resourceGroup().location
 param webAppName string
 param storageAccountName string
 
 resource webApp 'Microsoft.Web/sites@2021-01-01' = {
     name: webAppName
-    location: location
+    location: azureRegion
     properties: {
         serverFarmId: appServicePlan.id
     }
@@ -12,7 +14,7 @@ resource webApp 'Microsoft.Web/sites@2021-01-01' = {
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-01-01' = {
     name: '${webAppName}Plan'
-    location: location
+    location: azureRegion
     sku: {
         name: 'F1'
         tier: 'Free'
@@ -21,16 +23,17 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2021-01-01' = {
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
     name: storageAccountName
-    location: location
+    location: azureRegion
     sku: {
         name: 'Standard_LRS'
     }
     kind: 'StorageV2'
 }
 
+// Create a private endpoint for the web app
 resource privateEndpoint 'Microsoft.Network/privateEndpoints@2021-02-01' = {
     name: '${webAppName}PrivateEndpoint'
-    location: location
+    location: azureRegion
     properties: {
         privateLinkServiceConnections: [
             {
