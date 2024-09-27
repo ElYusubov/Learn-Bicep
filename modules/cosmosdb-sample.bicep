@@ -1,13 +1,21 @@
 // cosmosdb-sample.bicep
 
-param appName string = uniqueString(resourceGroup().id)
-param accountName string = toLower('cosmos-${appName}')
-param location string = resourceGroup().location
-param databaseName string = toLower('db-${appName}')
+@description('Create a suffix based out of RG for repeatable deployments')
+param suffix string = uniqueString(resourceGroup().id)
 
+@description('The location that these Cosmos DB resources will be deployed to')
+param azureRegion string = resourceGroup().location
+
+@description('The name of our Cosmos DB Account')
+param databaseName string = toLower('db-${suffix}')
+
+@description('The name of our Cosmos DB Account')
+param accountName string = toLower('cosmos-${suffix}')
+
+// Cosmos DB account
 resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2020-04-01' = {
   name: accountName
-  location: location
+  location: azureRegion
   properties: {
     enableFreeTier: true
     databaseAccountOfferType: 'Standard'
@@ -16,7 +24,7 @@ resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2020-04-01' = {
     }
     locations: [
       {
-        locationName: location
+        locationName: azureRegion
       }
     ]
   }
@@ -26,6 +34,7 @@ resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2020-04-01' = {
   }
 }
 
+// Cosmos DB database
 resource cosmosdb 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2020-04-01' = {
   parent: cosmos
   name: databaseName

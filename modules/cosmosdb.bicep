@@ -17,6 +17,7 @@ param containerName string
 @description('The amount of throughput to provision in our Cosmos DB Container')
 param containerThroughput int
 
+// Cosmos DB account
 resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2021-11-15-preview' = {
   name: cosmosDbAccountName
   location: location
@@ -38,6 +39,7 @@ resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2021-11-15-previ
   }
 }
 
+// Cosmos DB database
 resource database 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2021-11-15-preview' = {
   name: databaseName
   parent: cosmosDbAccount
@@ -48,6 +50,7 @@ resource database 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2021-11-15
   }
 }
 
+// Cosmos DB container
 resource container 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2021-11-15-preview' = {
   name: containerName
   parent: database
@@ -75,6 +78,7 @@ resource container 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/container
   }
 }
 
+// Output values
 output cosmosDbAccountName string = cosmosDbAccount.name
 output databaseName string = database.name
 output containerName string = container.name
