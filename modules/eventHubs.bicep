@@ -10,6 +10,7 @@ param eventHubsSkuName string
 @description('The name of our event hub that we will provision as part of this namespace')
 param hubName string
 
+// Event Hub Namespace
 resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-11-01' = {
   name: eventHubsName
   location: location
@@ -21,6 +22,7 @@ resource eventHubNamespace 'Microsoft.EventHub/namespaces@2021-11-01' = {
   }
 }
 
+// Event Hub
 resource eventHub 'Microsoft.EventHub/namespaces/eventhubs@2021-11-01' = {
   name: hubName
   parent: eventHubNamespace
@@ -29,6 +31,7 @@ resource eventHub 'Microsoft.EventHub/namespaces/eventhubs@2021-11-01' = {
   }
 }
 
+// Output values
 output eventHubNamespaceName string = eventHubNamespace.name
 output eventHubNamespaceId string = eventHubNamespace.id
 output eventHubName string = eventHub.name
