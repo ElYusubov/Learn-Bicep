@@ -3,15 +3,20 @@
 // Add a child resource to parent resource
 // Add conatiners to the parent blob service from list of values
 
+@description('The prefix that will appear infront of storage account name.')
 param storageAccountName string = 'ftc${uniqueString(resourceGroup().id)}'
+
+@description('The Azure region where the storage account will be created.')
 param azureregion string = resourceGroup().location
 
+@description('The list of containers that will be created in the storage account')
 var containerNames = [
  'logs'
  'inputs'
  'outputs'
 ]
 
+// Creates a storage account
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: storageAccountName
   location: azureregion
@@ -24,23 +29,24 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
 }
 
+// Create a blob service
 resource myStorageBlobServices 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' = {
   name: 'default'
   parent: storageAccount
 }
 
+// Creates a container
 resource myStorageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-06-01' = {
   name: 'data-log'
   parent: myStorageBlobServices
 }
 
-// using enumaration 
+// Creates containers by using enumaration 
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = [ for containerName in containerNames: {
   name: '${storageAccount.name}/default/${containerName}'
 }]
 
-
-// lock the storage account to prevent accidential deletion
+// Lock the storage account to prevent accidential deletion
 resource lockResourceGroup 'Microsoft.Authorization/locks@2016-09-01' = {
   name: 'DontDelete'
   scope: storageAccount
