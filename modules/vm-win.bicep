@@ -3,10 +3,12 @@
 
 param adminUserName string
 
+@description('The password for the VM. Must adhere to the complexity requirements for Windows VMs.')
 @secure()
 @minLength(12)
 param adminPassword string
 
+@description('The DNS label prefix for the Public IP Address associated with the VM.')
 param dnsLabelPrefix string
 
 @allowed([
@@ -182,4 +184,5 @@ resource VM 'Microsoft.Compute/virtualMachines@2020-06-01' = {
   }
 }
 
+// Output the hostname for the VM
 output hostname string = pip.properties.dnsSettings.fqdn
