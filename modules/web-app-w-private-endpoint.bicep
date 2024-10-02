@@ -1,9 +1,15 @@
 // web-app-w-private-endpoint.bicep
 
+@description('The azure region location inherited from the RG.')
 param azureRegion string = resourceGroup().location
+
+@description('The name of the web app.')
 param webAppName string
+
+@description('The name of the storage account.')
 param storageAccountName string
 
+// Create a web app and app service plan
 resource webApp 'Microsoft.Web/sites@2021-01-01' = {
     name: webAppName
     location: azureRegion
@@ -12,6 +18,7 @@ resource webApp 'Microsoft.Web/sites@2021-01-01' = {
     }
 }
 
+// Create an app service plan
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-01-01' = {
     name: '${webAppName}Plan'
     location: azureRegion
@@ -21,6 +28,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2021-01-01' = {
     }
 }
 
+// Create a storage account for the web app
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
     name: storageAccountName
     location: azureRegion

@@ -1,6 +1,7 @@
 // vm-win.bicep
 // builds windows VM from provided SKUs
 
+@description('An admin username for the VM.')
 param adminUserName string
 
 @description('The password for the VM. Must adhere to the complexity requirements for Windows VMs.')
@@ -40,6 +41,7 @@ param vmSize string = 'Standard_B2ms'
 @description('location for all resources')
 param location string = resourceGroup().location
 
+@description('Unique identifier for the storage resource.')
 var storageAccountName = '${uniqueString(resourceGroup().id)}sawinvm'
 var nicName = 'myVMNic'
 var addressPrefix = '10.0.0.0/16'
@@ -51,6 +53,7 @@ var virtualNetworkName = 'demoVNET'
 var subnetRef = '${vn.id}/subnets/${subnetName}'
 var networkSecurityGroupName = 'demo-NSG'
 
+// Create a storage account for the VM
 resource stg 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   name: storageAccountName
   location: location
@@ -60,6 +63,7 @@ resource stg 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   kind: 'Storage'
 }
 
+// Create a public IP address for the VM
 resource pip 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
   name: publicIPAddressName
   location: location
@@ -71,6 +75,7 @@ resource pip 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
   }
 }
 
+// Create a network security group for the VM
 resource sg 'Microsoft.Network/networkSecurityGroups@2020-06-01' = {
   name: networkSecurityGroupName
   location: location
@@ -93,6 +98,7 @@ resource sg 'Microsoft.Network/networkSecurityGroups@2020-06-01' = {
   }
 }
 
+// Create a virtual network for the VM
 resource vn 'Microsoft.Network/virtualNetworks@2020-06-01' = {
   name: virtualNetworkName
   location: location
@@ -116,6 +122,7 @@ resource vn 'Microsoft.Network/virtualNetworks@2020-06-01' = {
   }
 }
 
+// Create a network interface for the VM
 resource nInter 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   name: nicName
   location: location
@@ -138,6 +145,7 @@ resource nInter 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   }
 }
 
+// Create the VM resource
 resource VM 'Microsoft.Compute/virtualMachines@2020-06-01' = {
   name: vmName
   location: location
