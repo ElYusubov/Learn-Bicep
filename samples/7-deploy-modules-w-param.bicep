@@ -12,6 +12,11 @@ param appResourceGroupName string // = 'rg-demo-app-${azureRegion}'
 param storageResourceGroupName string // = 'rg-demo-storage-${azureRegion}'
 param userName string
 
+var sessionTags = {
+  Project: 'Azure Bicep Session 2024'
+  Environment: 'Demo'
+}
+
 @description('The password for the VM. Must adhere to the complexity requirements for Windows VMs.')
 @secure()
 param secretPass string
@@ -20,10 +25,7 @@ param secretPass string
 resource myAppResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: appResourceGroupName
   location: azureRegion
-  tags:{
-    Project: 'Azure Dominicana 2022'
-    Environment: 'Demo'
-  }
+  tags:sessionTags
 }
 
 module appService '../modules/appservice.bicep' = {
@@ -39,10 +41,7 @@ module appService '../modules/appservice.bicep' = {
 resource myResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
   location: azureRegion
-  tags:{
-    Project: 'Azure Demo Meetup'
-    Environment: 'Demo'
-  }
+  tags:sessionTags
 }
 
 module winVMModule '../modules/vm-win.bicep' = {
@@ -53,6 +52,7 @@ module winVMModule '../modules/vm-win.bicep' = {
     adminPassword: secretPass
     dnsLabelPrefix: 'demosession'
     location: azureRegion
+    moduleTags: sessionTags
   }
 }
 

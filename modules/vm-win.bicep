@@ -12,6 +12,11 @@ param adminPassword string
 @description('The DNS label prefix for the Public IP Address associated with the VM.')
 param dnsLabelPrefix string
 
+param moduleTags object = {
+  Project: 'Azure Demo Meetup'
+  Environment: 'Demo'
+}
+
 @allowed([
   '2008-R2-SP1'
   '2012-Datacenter'
@@ -61,6 +66,7 @@ resource stg 'Microsoft.Storage/storageAccounts@2019-06-01' = {
     name: 'Standard_LRS'
   }
   kind: 'Storage'
+  tags: moduleTags
 }
 
 // Create a public IP address for the VM
@@ -73,6 +79,7 @@ resource pip 'Microsoft.Network/publicIPAddresses@2020-06-01' = {
       domainNameLabel: dnsLabelPrefix
     }
   }
+  tags: moduleTags
 }
 
 // Create a network security group for the VM
@@ -120,12 +127,14 @@ resource vn 'Microsoft.Network/virtualNetworks@2020-06-01' = {
       }
     ]
   }
+  tags: moduleTags
 }
 
 // Create a network interface for the VM
 resource nInter 'Microsoft.Network/networkInterfaces@2020-06-01' = {
   name: nicName
   location: location
+  tags: moduleTags
 
   properties: {
     ipConfigurations: [
@@ -149,6 +158,7 @@ resource nInter 'Microsoft.Network/networkInterfaces@2020-06-01' = {
 resource VM 'Microsoft.Compute/virtualMachines@2020-06-01' = {
   name: vmName
   location: location
+  tags: moduleTags
   properties: {
     hardwareProfile: {
       vmSize: vmSize
