@@ -4,7 +4,7 @@
 
 targetScope = 'subscription'
 
-@description('Azure region location.')
+@description('The location where we will deploy our resources')
 param azureRegion string = 'eastus'
 
 param resourceGroupName string // = 'rg-demo-vm-${azureRegion}'
@@ -12,6 +12,7 @@ param appResourceGroupName string // = 'rg-demo-app-${azureRegion}'
 param storageResourceGroupName string // = 'rg-demo-storage-${azureRegion}'
 param userName string
 
+@description('The password for the VM. Must adhere to the complexity requirements for Windows VMs.')
 @secure()
 param secretPass string
 
