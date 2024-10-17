@@ -2,10 +2,10 @@
 az login --use-device-code
 az account show --query name
 
-az account set --subscription 'Primary MCT Azure'
+az account set --subscription 'MVP-Subscription-07'
 az group list -o table
 
-az group create -n 'cll-bicep-demo' -l 'eastus2'  
+az group create -n 'new-bicep-demo' -l 'eastus2'  
 az group list -o table
 
 # Deploy Policy Definitions to subscription
@@ -42,5 +42,5 @@ az bicep decompile --file .\Pilot-project\decompile\template-clean-v2.json
 # az group create -n 'bicep-part1-pilot-web-demo' -l 'eastus2'
 
 # Deploy parent-child-scenarios.bicep
-az group create -n 'v3-kineteco-arm-eastus2' -l 'eastus2'
-az deployment group create -g 'v3-kineteco-arm-eastus2' -f .\samples\14-deploy-child-parent-scenarios.bicep -c
+az group create -n 'new-demo-arm-eastus2' -l 'eastus2'
+az deployment group create -g 'new-demo-arm-eastus2' -f .\samples\14-deploy-child-parent-scenarios.bicep -c
