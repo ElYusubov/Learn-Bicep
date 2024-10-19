@@ -1,5 +1,6 @@
 # Script clean-up and test
 # Login to Azure
+
 az login --use-device-code
 az account show --query name
 
@@ -34,8 +35,6 @@ az bicep publish --file .\modules\appservice.bicep --target br:clldemonov2023.az
 
 # Deploy Azure resources using private Bicep registry
 az deployment group create -g 'cllnov01' -f .\samples\15-deploy-private-repo.bicep -c
-
-
 
 # Query the list of exisiting web apps
 az webapp list -o table

@@ -3,7 +3,7 @@ az login --use-device-code
 az account show --query name
 
 # Set the subscription
-az account set --subscription 'Primary MCT Azure'
+az account set --subscription 'MVP-Subscription-07'
 az group list -o table
 
 
