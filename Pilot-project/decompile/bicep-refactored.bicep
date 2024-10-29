@@ -1,22 +1,26 @@
+// bicep-refactored.bicep
+
 // Clean-up resource names
 // Introduce App Name prefix
 // Simplify tag declarations
 
+// All the parameters are defined at the top of the file
 param appNamePrefix string = uniqueString(resourceGroup().id)
-
 param webappName string = '${appNamePrefix}-webapp'
 param appServicePlanName string = '${appNamePrefix}-appplan'
 param appInsightsName string = '${appNamePrefix}-appinsights'
 param appStorageAccountName string = format('{0}stg35', replace(appNamePrefix, '-', ''))
 
+@description('Azure resource tags')
 var appTags = {
   AppName: 'myKinetEcoTracking'
   Environment: 'Test'
 }
 
-// Move deployment location into parameter
+@description('Azure region to deploy all resources')
 param region string = 'eastus2' // resourceGroup().location
 
+// Create an App Insights resource
 resource components_kinetEco35_appinsights_name_resource 'microsoft.insights/components@2020-02-02' = {
   name: appInsightsName
   location: region
@@ -31,6 +35,7 @@ resource components_kinetEco35_appinsights_name_resource 'microsoft.insights/com
   }
 }
 
+// Create a storage account
 resource storageAccounts_kinetecotracking35stg1_name_resource 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   name: appStorageAccountName
   location: region
@@ -67,6 +72,7 @@ resource storageAccounts_kinetecotracking35stg1_name_resource 'Microsoft.Storage
   }
 }
 
+// Create an App Service Plan
 resource serverfarms_kinetEco35_appplan_name_resource 'Microsoft.Web/serverfarms@2022-03-01' = {
   name: appServicePlanName
   location: region
@@ -93,6 +99,7 @@ resource serverfarms_kinetEco35_appplan_name_resource 'Microsoft.Web/serverfarms
   }
 }
 
+// Create a Blob Storage service
 resource storageAccounts_kinetecotracking35stg1_name_default 'Microsoft.Storage/storageAccounts/blobServices@2022-05-01' = {
   parent: storageAccounts_kinetecotracking35stg1_name_resource
   name: 'default'
@@ -111,6 +118,7 @@ resource storageAccounts_kinetecotracking35stg1_name_default 'Microsoft.Storage/
   }
 }
 
+// Create a web app
 resource sites_kinetEco35_webapp_name_resource 'Microsoft.Web/sites@2022-03-01' = {
   name: webappName
   location: region
@@ -160,6 +168,7 @@ resource sites_kinetEco35_webapp_name_resource 'Microsoft.Web/sites@2022-03-01' 
   }
 }
 
+// Create a host name binding
 resource sites_kinetEco35_webapp_name_sites_kinetEco35_webapp_name_azurewebsites_net 'Microsoft.Web/sites/hostNameBindings@2022-03-01' = {
   parent: sites_kinetEco35_webapp_name_resource
   name: '${webappName}.azurewebsites.net'
