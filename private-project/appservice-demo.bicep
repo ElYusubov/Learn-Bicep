@@ -9,6 +9,7 @@ param appServiceAppName string = 'myapp${uniqueString(resourceGroup().id)}'
 @description('App service plan name.')
 param appServicePlanName string = 'asp-plan${uniqueString(resourceGroup().id)}'
 
+// Create an App Service Plan
 resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   name: appServicePlanName
   location: location
@@ -18,6 +19,7 @@ resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   }
 }
 
+// Create an App Service
 resource appServiceApp 'Microsoft.Web/sites@2020-06-01' = {
   name: appServiceAppName
   location: location

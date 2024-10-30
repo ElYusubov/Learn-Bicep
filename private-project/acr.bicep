@@ -15,8 +15,10 @@
 // To fetch Private registry modules before build
 // bicep restore --file module.bicep
 
+@description('Deploy an Azure Container Registry')
 param acrName string = 'latamprivateregistry'
 
+@description('Define the Azure Container Registry resource')
 resource containerRegistry 'Microsoft.ContainerRegistry/registries@2021-06-01-preview' = {
   name: acrName
   #disable-next-line no-loc-expr-outside-params
