@@ -1,12 +1,12 @@
-// pilot-webapp-environment
-param location string = resourceGroup().location
+// pilot-01-environment.bicep
 
-// param myDemoOrganization string = 'Packt Publishing'
-// var setValue = myDemoOrganization
+@description('Azure location for all resources')
+param azureRegion string = resourceGroup().location
 
+// Create App Service Plan resources
 resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   name: 'kinetEco35-appplan'
-  location: location
+  location: azureRegion
   sku: {
     name: 'F1'
     tier: 'Free'
@@ -17,10 +17,10 @@ resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   }
 }
 
-
+// Create App Service resources
 resource appServiceApp 'Microsoft.Web/sites@2020-06-01' = {
   name: 'kinetEco35-webapp'
-  location: location
+  location: azureRegion
   properties: {
     serverFarmId: appServicePlan.id
     httpsOnly: true
@@ -31,9 +31,10 @@ resource appServiceApp 'Microsoft.Web/sites@2020-06-01' = {
   }
 }
 
+// Create Storage Account resource
 resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: 'kinetecotracking35stg1'
-  location: location
+  location: azureRegion
   kind: 'StorageV2'
   sku: {
     name: 'Standard_LRS'
@@ -44,9 +45,10 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
 }
 
+// Create App Insights resource
 resource appInsightsComponents 'Microsoft.Insights/components@2020-02-02' = {
   name: 'kinetEco35-appinsights'
-  location: location
+  location: azureRegion
   kind: 'web'
   properties: {
     Application_Type: 'web'
@@ -56,3 +58,6 @@ resource appInsightsComponents 'Microsoft.Insights/components@2020-02-02' = {
     Environment: 'Test'
   }
 }
+
+@description('Provides a deployed apps host name.')
+output webAppHostName string = appServiceApp.properties.defaultHostName
