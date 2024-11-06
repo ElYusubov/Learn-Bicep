@@ -59,7 +59,7 @@ resource policy 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
 
 // Create the policy assignment
 resource policyAssignment 'Microsoft.Authorization/policyAssignments@2020-09-01' = {
-  name: '${policyName}-pa'
+  name: '${policyName}-assignment'
   properties: {
     policyDefinitionId: policy.id
     displayName: policyDisplayName
