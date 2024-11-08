@@ -4,6 +4,7 @@ The purpose of this Azure Policy is to ensure that resources within a subscripti
 This helps in maintaining governance, compliance, and organization of resources by enforcing tagging standards and ensuring that tag values adhere to a specified format.
 */ 
 
+// Set the scope of the deployment
 targetScope = 'subscription'
 
 // Define the variables 
@@ -39,7 +40,6 @@ resource policy 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
         }
       }
     }
-
     policyRule: {
       if: {
         field: '[concat(\'tags[\', parameters(\'tagName\'), \']\')]'
@@ -51,6 +51,19 @@ resource policy 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
     }
   }
 }
+
+// Create the policy assignment
+module policyAssignment 'audit-create-policy-assignment.bicep' = {
+  scope: resourceGroup()  // investigate if this should be subscription
+  name: 'policyDeployment-${uniqueString(subscription().subscriptionId)}'
+  params: {
+    policyName: policyName
+    policyDisplayName: policyDisplayName
+    policyDescription: policyDescription
+    policyDefinitionId: policy.id
+  }
+}
+
 
 // Define the output
 output policyName string = policy.properties.displayName
