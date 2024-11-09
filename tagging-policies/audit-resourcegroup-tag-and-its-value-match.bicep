@@ -58,19 +58,13 @@ resource policy 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
 }
 
 // Create the policy assignment
-resource policyAssignment 'Microsoft.Authorization/policyAssignments@2020-09-01' = {
-  name: '${policyName}-assignment'
-  properties: {
+module policyAssignment 'audit-create-policy-assignment.bicep' = {
+  scope: resourceGroup()  // investigate if this should be subscription
+  name: 'policyDeployment-${uniqueString(subscription().subscriptionId)}'
+  params: {
+    policyName: policyName
+    policyDisplayName: policyDisplayName
+    policyDescription: policyDescription
     policyDefinitionId: policy.id
-    displayName: policyDisplayName
-    description: policyDescription
-    parameters: {
-      tagName: {
-        value: 'Environment'
-      }
-      tagPattern: {
-        value: 'Test'
-      }
-    }
   }
 }
