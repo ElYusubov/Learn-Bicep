@@ -1,5 +1,9 @@
 // 14-deploy-child-parent-scenarios.bicep
 
+// This sample demonstrates the following scenarios:
+// 1. Creating a child resource with a reference to a parent resource.
+// 2. Including a child resource in the declaration of a parent resource.
+// 3. Using automation and looping to create child resources with enumeration.
 
 @description('The name of the storage account.')
 param storageAccountName string = 'ey22${uniqueString(resourceGroup().id)}'
