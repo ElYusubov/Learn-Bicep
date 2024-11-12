@@ -1,5 +1,9 @@
+// 19-deploy-tagging-policy-sub.bicep
+
+// Set the scope of the deployment
 targetScope = 'subscription'
 
+// Change the /subscriptions/xxx-your-subscription-id
 param policyDefinitionId string = '/subscriptions/xxx-your-subscription-id'
 
 var policySetName = 'tag-governance-psd'
