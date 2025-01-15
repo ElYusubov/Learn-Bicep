@@ -31,11 +31,11 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
 }
 
 // Creates a second storage account
-resource secondStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
-  name: 'secstg01${prefix}'
-  location: location
-  kind: 'StorageV2'
-  sku: {
-    name: 'Standard_LRS'
-  }
-}
+// resource secondStorage 'Microsoft.Storage/storageAccounts@2021-02-01' = {
+//   name: 'secstg01${prefix}'
+//   location: location
+//   kind: 'StorageV2'
+//   sku: {
+//     name: 'Standard_LRS'
+//   }
+// }

@@ -41,8 +41,8 @@
           "registry": "mcr.microsoft.com",
           "modulePath": "bicep"
         },
-        "PrivateDemo": {
-          "registry": "latamprivateregistry.azurecr.io",
+        "CloudRegistry": {
+          "registry": "cloudwithus01.azurecr.io",
           "modulePath": "bicep/modules"
         }
       }

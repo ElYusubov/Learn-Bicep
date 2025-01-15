@@ -7,36 +7,38 @@ az account show --query name
 # List all RG names
 az group list -o table
 
-# Deploy 15-deploy-private =-repo.bicep 
-az group create --name cllnov01 --location eastus
-az deployment group create --resource-group cllnov01 --template-file .\modules\acr-registry.bicep --parameters acrName=clldemonov2023 -c
+# Deploy acr registry as a bicep file
+az group create --name cloud-demo01 --location eastus
+az deployment group create --resource-group cloud-demo01 --template-file .\modules\acr-registry.bicep --parameters acrName=cloudwithus01 -c
 
 # List all the ACR accounts
 az acr list -o table
 az acr list --query [].name -o table
 
 # Get login server name
-az acr show --resource-group cllnov01 --name clldemonov2023.azurecr.io --query loginServer
-# Sample response: clldemonov2023.azurecr.io
+az acr show --resource-group cloud-demo01 --name cloudwithus01.azurecr.io --query loginServer
+# Sample response: cloudwithus01.azurecr.io
 
 ### ----------------------- ###
 
-az acr repository list --name clldemonov2023.azurecr.io --output table
+az acr repository list --name cloudwithus01.azurecr.io --output table
 
 # Publish modules/storage-param.bicep
-az bicep publish --file .\modules\storage-param.bicep --target br:clldemonov2023.azurecr.io/bicep/modules/storage:v1.0.0
-# Artifact reference clldemonov2023.azurecr.io/bicep/modules/storage:v1.0.0
-
+az bicep publish --file .\modules\storage-param.bicep --target br:cloudwithus01.azurecr.io/bicep/modules/storage:v1.0.0
+# Artifact reference cloudwithus01.azurecr.io/bicep/modules/storage:v1.0.0
 
 # Publish modules/appservice.bicep
-az bicep publish --file .\modules\appservice.bicep --target br:clldemonov2023.azurecr.io/bicep/modules/appservice:v2
-# Artifact reference clldemonov2023.azurecr.io/bicep/modules/appservice:v1
+az bicep publish --file .\modules\appservice.bicep --target br:cloudwithus01.azurecr.io/bicep/modules/appservice:v1.0.0
+# Artifact reference cloudwithus01.azurecr.io/bicep/modules/appservice:v1.0.0
 
-# Deploy Azure resources using private Bicep registry
-az deployment group create -g 'cllnov01' -f .\samples\15-deploy-private-repo.bicep -c
+# Deploy Azure resources using private Bicep registry from 15-deploy-private-repo.bicep file 
+az deployment group create -g 'cloud-demo01' -f .\samples\15-deploy-private-repo.bicep -c
 
 # Query the list of exisiting web apps
 az webapp list -o table
 
+# List storage account names on Subscription
+az storage account list --query "[].{name:name}" --output table
+
 # Display an existing web app
-az webapp show -g cllnov01 --name newapp031555 -o table
+az webapp show -g cloud-demo01 --name cloudwithus-demo-01 -o table
