@@ -17,10 +17,11 @@ az acr list --query [].name -o table
 
 # Get login server name
 az acr show --resource-group cloud-demo01 --name cloudwithus01.azurecr.io --query loginServer
-# Sample response: cloudwithus01.azurecr.io
+# Expected response: cloudwithus01.azurecr.io
 
-### ----------------------- ###
+### ------- Publishing modules to a new ACR ----------- ###
 
+# Repo of the ACR is expected to be empty at this point
 az acr repository list --name cloudwithus01.azurecr.io --output table
 
 # Publish modules/storage-param.bicep
@@ -42,3 +43,6 @@ az storage account list --query "[].{name:name}" --output table
 
 # Display an existing web app
 az webapp show -g cloud-demo01 --name cloudwithus-demo-01 -o table
+
+# Deploy AVM Bicep module from 23-deploy-avm-acr.bicep file 
+az deployment group create -g 'cloud-demo01' -f .\samples\23-deploy-avm-acr.bicep -c
