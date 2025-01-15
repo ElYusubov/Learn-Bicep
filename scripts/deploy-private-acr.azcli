@@ -19,8 +19,7 @@ az acr list --query [].name -o table
 az acr show --resource-group cllnov01 --name clldemonov2023.azurecr.io --query loginServer
 # Sample response: clldemonov2023.azurecr.io
 
-
-## -----------------------
+### ----------------------- ###
 
 az acr repository list --name clldemonov2023.azurecr.io --output table
 
