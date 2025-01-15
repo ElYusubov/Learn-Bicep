@@ -10,18 +10,29 @@
 
 // Step-4: Call the private module in your Bicep code
 
-// module regAppService 'br:azwelshug0315.azurecr.io/bicep/modules/appservice:v1' = {
-//   name: 'appServiceDeploy'
+module regAppService 'br:cloudwithus01.azurecr.io/bicep/modules/appservice:v1.0.0' = {
+  name: 'appServiceDeploy'
+  params: {
+    location: 'eastus2'
+    appServiceAppName: 'cloudwithus-demo-01'
+  }
+}
+
+// module regStorage 'br:cloudwithus01.azurecr.io/bicep/modules/storage:v1.0.0' = {
+//   name: 'storageDeploy'
 //   params: {
-//     location: 'eastus'
-//     appServiceAppName: 'azwelshug0315'
+//     azureRegion: 'eastus2'
+//     geoRedundancy: false
+//     namePrefix: 'dev'
 //   }
 // }
 
-module regAppService2 'br/CoreModules:appservice:v2' = {
-  name: 'appServiceDeploy2'
+// CloudRegistry
+module regNewStorage 'br/CloudRegistry:storage:v1.0.0' = {
+  name: 'storageDeploy2'
   params: {
-    location: 'eastus'
-    appServiceAppName: 'newapp031555'
+    azureRegion: 'eastus2'
+    geoRedundancy: false
+    namePrefix: 'test'
   }
 }
