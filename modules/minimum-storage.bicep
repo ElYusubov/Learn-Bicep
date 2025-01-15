@@ -15,6 +15,6 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   }
   tags: {
     Environment: 'Demo'
-    Project: 'MVP TechBytes 2023'
+    Project: 'Test Bicep 2025'
   }
 }
