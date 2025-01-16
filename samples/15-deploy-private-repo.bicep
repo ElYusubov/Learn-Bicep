@@ -14,18 +14,9 @@ module regAppService 'br:cloudwithus01.azurecr.io/bicep/modules/appservice:v1.0.
   name: 'appServiceDeploy'
   params: {
     location: 'eastus2'
-    appServiceAppName: 'cloudwithus-demo-01'
+    appServiceAppName: 'cloudwithus-demo-05'
   }
 }
-
-// module regStorage 'br:cloudwithus01.azurecr.io/bicep/modules/storage:v1.0.0' = {
-//   name: 'storageDeploy'
-//   params: {
-//     azureRegion: 'eastus2'
-//     geoRedundancy: false
-//     namePrefix: 'dev'
-//   }
-// }
 
 // CloudRegistry
 module regNewStorage 'br/CloudRegistry:storage:v1.0.0' = {
