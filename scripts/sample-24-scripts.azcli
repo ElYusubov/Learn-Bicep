@@ -1,0 +1,15 @@
+# Build and ARM template
+az bicep build -f .\samples\24-deploy-policy-as-code-w-initiative.bicep
+
+# Login to Azure subscription
+az login --use-device-code
+az account show --query name
+
+az account set --subscription 'MVP-Subscription-07'
+az group list -o table
+
+# Deployment of policy to Azure subscription
+az deployment sub create -f .\samples\24-deploy-policy-as-code-w-initiative.bicep -l eastus2
+
+# Trigger a subscription-level policy compliance scan 
+az policy state trigger-scan --no-wait

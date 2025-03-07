@@ -1,0 +1,38 @@
+{
+    "properties": {
+      "displayName": "Deny storage accounts not using only HTTPS",
+      "description": "Deny storage accounts not using only HTTPS. Checks the supportsHttpsTrafficOnly property on StorageAccounts.",
+      "mode": "all",
+      "parameters": {
+        "effectType": {
+          "type": "string",
+          "defaultValue": "Deny",
+          "allowedValues": [
+            "Deny",
+            "Disabled"
+          ],
+          "metadata": {
+            "displayName": "Effect",
+            "description": "Enable or disable the execution of the policy"
+          }
+        }
+      },
+      "policyRule": {
+        "if": {
+          "allOf": [
+            {
+              "field": "type",
+              "equals": "Microsoft.Storage/storageAccounts"
+            },
+            {
+              "field": "Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly",
+              "notEquals": "true"
+            }
+          ]
+        },
+        "then": {
+          "effect": "[parameters('effectType')]"
+        }
+      }
+    }
+  }
