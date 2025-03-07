@@ -1,5 +1,4 @@
 /*
-
 audit-resource-tag-and-its-value-match.bicep
 
 The purpose of this Azure Policy is to ensure that resources within a subscription have a specific tag with a specific value. 
