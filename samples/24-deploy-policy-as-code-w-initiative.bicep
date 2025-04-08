@@ -26,9 +26,9 @@ param listOfAllowedSKUs array = [
   'Standard_D4s_v3'
 ]
 
-var initiativeName = 'SpringCleanDemoInitiative'
-var assignmentName = 'SpringCleanDemoAssignment'
-var version = '0.1.1'
+var initiativeName = 'CoPDemoInitiative'
+var assignmentName = 'CoPDemoAssignment'
+var version = '0.2'
 
 resource demoInitiative 'Microsoft.Authorization/policySetDefinitions@2024-05-01' = {
   name: initiativeName
