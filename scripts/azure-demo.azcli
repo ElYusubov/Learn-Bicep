@@ -44,3 +44,9 @@ az bicep decompile --file .\Pilot-project\decompile\template-clean-v2.json
 # Deploy parent-child-scenarios.bicep
 az group create -n 'v3-kineteco-arm-eastus2' -l 'eastus2'
 az deployment group create -g 'v3-kineteco-arm-eastus2' -f .\samples\14-deploy-child-parent-scenarios.bicep -c
+
+
+### Deploy Graph-Bicep extension resources
+az login
+az group create -n 'az-comunity-bicep-demo-eastus2' -l 'eastus2'
+az deployment group create -g 'az-comunity-bicep-demo-eastus2' -f .\samples\25-graph-bicep-extension.bicep -c
