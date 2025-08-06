@@ -1,3 +1,5 @@
+ // 25-graph-bicep-extension.bicep
+ 
 extension microsoftGraphV1
 
 param location string = resourceGroup().location
