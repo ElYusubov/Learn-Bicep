@@ -50,8 +50,8 @@ Get running your samples in the VS Code:
 - SL Scan: shiftleft-analysis:-> describes workflow purpose
 - Deploy-Main-Site: main.deployment:-> describes workflow purpose
 
-## Project Layout
+## Project Folder Layout
 - modules: contain reusable components
 - param-files: Learn about parameterization options in Azure Bicep files
-- samples: contain 11 step deployments of Azure and security services
+- samples: contain 25 deployments of Azure and security services, some use modules folder
 - scripts: contain single '.azcli' file that walk you through deployment scripts
