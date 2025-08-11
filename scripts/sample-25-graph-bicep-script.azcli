@@ -1,0 +1,11 @@
+## Sign in to Azure CLI
+az login
+
+az account set --subscription 'MVP-Subscription-07'
+az group list -o table
+
+## Create a resource group
+az group create --name bicep-graph-demo-rg --location eastus
+
+## Deploy the Bicep file
+az deployment group create --resource-group bicep-graph-demo-rg --template-file .\samples\25-graph-bicep-extension.bicep

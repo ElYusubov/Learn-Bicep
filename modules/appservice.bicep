@@ -19,7 +19,7 @@ resource appServicePlan 'Microsoft.Web/serverFarms@2020-06-01' = {
   }
 }
 
-// Define a second Azure App Service
+// Define an Azure App Service (Web App)
 resource appServiceApp 'Microsoft.Web/sites@2020-06-01' = {
   name: appServiceAppName
   location: location
