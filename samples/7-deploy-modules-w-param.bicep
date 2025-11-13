@@ -13,7 +13,7 @@ param storageResourceGroupName string // = 'rg-demo-storage-${azureRegion}'
 param userName string
 
 var sessionTags = {
-  Project: 'Azure Bicep Session 2024'
+  Project: 'Azure Bicep Demo Meetup'
   Environment: 'Demo'
 }
 
