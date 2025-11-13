@@ -5,7 +5,7 @@ az account show --query name
 az account set --subscription 'MVP-Subscription-07'
 az group list -o table
 
-az group create -n 'new-bicep-demo' -l 'eastus2'  
+az group create -n 'cm-bicep-demo-01' -l 'eastus2'  
 az group list -o table
 
 # Deploy Policy Definitions to subscription
